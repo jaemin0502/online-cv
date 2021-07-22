@@ -79,20 +79,7 @@ experiences:
 
           - 
           - 
-    - role:
-      time:
-      company:
-      details: |
 
-          - 
-          - 
-    - role:
-      time:
-      company:
-      details: |
-
-          - 
-          - 
 projects:
     title: Projects
     intro: >
@@ -124,20 +111,10 @@ publications:
     intro: |
 
     papers:
-      - title:
-        link:
-        authors:
-        conference:
-
-      - title:
-        link:
-        authors:
-        conference:
-
-      - title:
-        link:
-        authors:
-        conference:
+      # - title:
+      #  link:
+      #  authors:
+      #  conference:
 
 skills:
     title: Skills &amp; Proficiency
@@ -154,12 +131,6 @@ skills:
 
       - name: C/C++
         level: 75%
-
-      - name:
-        level:
-
-      - name:
-        level:
 
 footer: >
     Designed with <i class="fas fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank" rel="nofollow">Xiaoying Riley</a>
