@@ -1,3 +1,3639 @@
+Last login: Wed Jul 21 16:21:48 on ttys002
+(base) jaemin@seojaemin-ui-MacBookPro ~ % ls   
+Applications			Library				matlab_crash_dump.80654-1
+Creative Cloud Files		Movies				matlab_crash_dump.85464-1
+Desktop				Music				opt
+Documents			OneDrive			workspace
+Downloads			Pictures
+Dropbox				Public
+(base) jaemin@seojaemin-ui-MacBookPro ~ % ssh -p 5900 -Y jmseo@rtl.postech.ac.kr
+
+jmseo@rtl.postech.ac.kr's password: 
+Warning: No xauth data; using fake authentication data for X11 forwarding.
+Last login: Wed Jul 21 16:32:08 2021 from libretto.postech.ac.kr
+This server is CentOS ver.6
+Server name: rtl
+Currently Loaded Modulefiles:
+ 1) license/license      3) cosmosscope/2017.12   5) syn/2018.06     7) ic/617       9) gcc-6/5.4.0  
+ 2) hspice/2017.12.SP2   4) xcelium/18.03         6) innovus/17.10   8) pt/2018.06  
+[rtl : jmseo] ls
+CDS.log                  Primetime.tar                       panic.log.rtl.postech.ac.kr.262534
+CDS.log.cdslck           cds.lib                             panic.log.rtl.postech.ac.kr.262935
+CSDL_tutorial_Innovus    hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_PrimeTime  lab                                 panic.log.rtl.postech.ac.kr.267372
+ICCAD2021                lab.tar                             panic.log.rtl.postech.ac.kr.273843
+Innovus.tar              panic.log.rtl.postech.ac.kr.133355  pygcn
+Primetime                panic.log.rtl.postech.ac.kr.148245  simulation
+[rtl : jmseo] rm -rf ICCAD2021
+[rtl : jmseo] git checkout -b origin/kjmin
+fatal: Not a git repository (or any of the parent directories): .git
+[rtl : jmseo] git clone git@github.com:microhumanis/ICCAD2021.git
+Initialized empty Git repository in /class/intern/jmseo/ICCAD2021/.git/
+remote: Enumerating objects: 73516, done.
+remote: Counting objects: 100% (68/68), done.
+remote: Compressing objects: 100% (50/50), done.
+remote: Total 73516 (delta 19), reused 67 (delta 18), pack-reused 73448
+Receiving objects: 100% (73516/73516), 136.12 MiB | 10.79 MiB/s, done.
+Resolving deltas: 100% (29873/29873), done.
+[rtl : jmseo] git checkout -b origin/kjmin
+fatal: Not a git repository (or any of the parent directories): .git
+[rtl : jmseo] ls
+CDS.log                  Primetime.tar                       panic.log.rtl.postech.ac.kr.262534
+CDS.log.cdslck           cds.lib                             panic.log.rtl.postech.ac.kr.262935
+CSDL_tutorial_Innovus    hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_PrimeTime  lab                                 panic.log.rtl.postech.ac.kr.267372
+ICCAD2021                lab.tar                             panic.log.rtl.postech.ac.kr.273843
+Innovus.tar              panic.log.rtl.postech.ac.kr.133355  pygcn
+Primetime                panic.log.rtl.postech.ac.kr.148245  simulation
+[rtl : jmseo] cd ICCAD2021
+[rtl : ICCAD2021] ls
+README.md  example  makefile  obj  paper  result  run.py  src
+[rtl : ICCAD2021] cd src
+[rtl : src] ls
+Circuit.cpp  Cnf.cpp  Gate.cpp  ParseError.h  Pin.h     Wire.h        main.cpp
+Circuit.h    Cnf.h    Gate.h    Pin.cpp       Wire.cpp  boost_1_76_0  sortCircuit.cpp
+[rtl : src] cd ..
+[rtl : ICCAD2021] ls
+README.md  example  makefile  obj  paper  result  run.py  src
+[rtl : ICCAD2021] make
+g++ -std=c++17 -W -Wall -O3 -m64    -c src/Circuit.cpp -o obj/Circuit.o -MD -static-libstdc++
+g++ -std=c++17 -W -Wall -O3 -m64    -c src/Cnf.cpp -o obj/Cnf.o -MD -static-libstdc++
+g++ -std=c++17 -W -Wall -O3 -m64    -c src/Gate.cpp -o obj/Gate.o -MD -static-libstdc++
+g++ -std=c++17 -W -Wall -O3 -m64    -c src/Pin.cpp -o obj/Pin.o -MD -static-libstdc++
+g++ -std=c++17 -W -Wall -O3 -m64    -c src/Wire.cpp -o obj/Wire.o -MD -static-libstdc++
+g++ -std=c++17 -W -Wall -O3 -m64    -c src/main.cpp -o obj/main.o -MD -static-libstdc++
+g++ -std=c++17 -W -Wall -O3 -m64    -c src/sortCircuit.cpp -o obj/sortCircuit.o -MD -static-libstdc++
+src/sortCircuit.cpp: In function ‘std::vector<Gate> sortCircuit(const Circuit&)’:
+src/sortCircuit.cpp:9:17: error: ‘const struct Circuit’ has no member named ‘inputs’
+  for(auto in: c.inputs) {
+                 ^
+src/sortCircuit.cpp:10:17: error: ‘const struct Circuit’ has no member named ‘nodes’
+   for(auto g: c.nodes) {
+                 ^
+src/sortCircuit.cpp:12:3: error: expected primary-expression before ‘}’ token
+   }
+   ^
+src/sortCircuit.cpp:15:16: error: ‘const struct Circuit’ has no member named ‘nodes’
+  for(auto g: c.nodes) {
+                ^
+src/sortCircuit.cpp:20:21: error: ‘const struct Circuit’ has no member named ‘nodes’
+  for(int i = 0; i<c.nodes.size();i++) {
+                     ^
+src/sortCircuit.cpp:23:16: error: ‘struct Gate’ has no member named ‘nextGate’
+   for(auto k:g.nextGate) {
+                ^
+src/sortCircuit.cpp:31:1: warning: no return statement in function returning non-void [-Wreturn-type]
+ }
+ ^
+make: *** [obj/sortCircuit.o] 오류 1
+[rtl : ICCAD2021] git checkout -b temp1 origin/kjmin
+Branch temp1 set up to track remote branch kjmin from origin.
+Switched to a new branch 'temp1'
+[rtl : ICCAD2021] git checkout temp1
+Already on 'temp1'
+[rtl : ICCAD2021] git pull origin kjmin
+From github.com:microhumanis/ICCAD2021
+ * branch            kjmin      -> FETCH_HEAD
+Already up-to-date.
+[rtl : ICCAD2021] ls
+README.md  example  makefile  obj  paper  result  run.py  src
+[rtl : ICCAD2021] make
+g++ -std=c++17 -W -Wall -O3 -m64    ./obj/Circuit.o ./obj/Cnf.o ./obj/Gate.o ./obj/Pin.o ./obj/Wire.o ./obj/main.o -o eco -static-libstdc++ 
+[rtl : ICCAD2021] ls
+README.md  eco  example  makefile  obj  paper  result  run.py  src
+[rtl : ICCAD2021] run.py
+run.py: 허가 거부.
+[rtl : ICCAD2021] python run.py
+
+
+====================================================================================================
+Functional ECO: Examples available
+
+(1) test4
+(2) test06_official
+(3) test05_official
+(4) test5
+(5) test2
+(6) test6
+(7) test1
+(8) test8
+(9) test04_official
+(10) test07_official
+(11) test7
+(12) test3
+(13) test03_official
+====================================================================================================
+
+Select index: 4
+====================================================================================================
+
+RUN: ./eco ./example/test5/r1.v ./example/test5/r2.v ./example/test5/g1.v ./result/patch.v
+====================================================================================================
+module top(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], k[0], k[1], y[0], y[1], y[2], y[3], y[4], y[5], y[6], y[7]);
+input x[0]
+input x[1]
+input x[2]
+input x[3]
+input x[4]
+input x[5]
+input x[6]
+input x[7]
+input k[0]
+input k[1]
+output y[0]
+output y[1]
+output y[2]
+output y[3]
+output y[4]
+output y[5]
+output y[6]
+output y[7]
+wire y[0];
+wire y[1];
+wire y[2];
+wire y[3];
+wire y[4];
+wire y[5];
+wire y[6];
+wire y[7];
+wire x[0];
+wire x[1];
+wire x[2];
+wire x[3];
+wire x[4];
+wire x[5];
+wire x[6];
+wire x[7];
+wire k[0];
+wire k[1];
+wire kb0;
+wire kb1;
+wire n0;
+wire n1;
+wire n2;
+wire n3;
+wire n4;
+wire n5;
+wire n6;
+wire n8;
+wire n9;
+wire n10;
+wire n11;
+wire n12;
+wire n13;
+wire n15;
+wire n16;
+wire n17;
+wire n18;
+wire n19;
+wire n20;
+wire n22;
+wire n23;
+wire n24;
+wire n25;
+wire n26;
+wire n27;
+wire n29;
+wire n30;
+wire n31;
+wire n32;
+wire n33;
+wire n34;
+wire n36;
+wire n37;
+wire n38;
+wire n39;
+wire n40;
+wire n41;
+wire n43;
+wire n44;
+wire n45;
+wire n46;
+wire n48;
+wire n51;
+wire n53;
+not gbk0 (kb0, k[0]);
+not gbk1 (kb1, k[1]);
+and g0 (n0, x[1], k[0]);
+and g1 (n1, x[0], k[0]);
+or g2 (n2, n0, kb0);
+and g3 (n3, n2, kb1);
+and g4 (n4, n1, k[1]);
+or gy0 (y[0], n3, n4);
+and g5 (n5, x[2], k[0]);
+and g6 (n6, x[0], kb0);
+or g8 (n8, n5, kb0);
+or g9 (n9, n6, n0);
+and g10 (n10, n8, kb1);
+and g11 (n11, n9, k[1]);
+or gy1 (y[1], n10, n11);
+and g12 (n12, x[3], k[0]);
+and g13 (n13, x[1], kb0);
+or g15 (n15, n12, kb0);
+or g16 (n16, n13, n5);
+and g17 (n17, n15, kb1);
+and g18 (n18, n16, k[1]);
+or gy2 (y[2], n17, n18);
+and g19 (n19, x[4], k[0]);
+and g20 (n20, x[2], kb0);
+or g22 (n22, n19, kb0);
+or g23 (n23, n20, n12);
+and g24 (n24, n22, kb1);
+and g25 (n25, n23, k[1]);
+or gy3 (y[3], n24, n25);
+and g26 (n26, x[5], k[0]);
+and g27 (n27, x[3], kb0);
+or g29 (n29, n26, kb0);
+or g30 (n30, n27, n19);
+and g31 (n31, n29, kb1);
+and g32 (n32, n30, k[1]);
+or gy4 (y[4], n31, n32);
+and g33 (n33, x[6], k[0]);
+and g34 (n34, x[4], kb0);
+or g36 (n36, n33, kb0);
+or g37 (n37, n34, n26);
+and g38 (n38, n36, kb1);
+and g39 (n39, n37, k[1]);
+or gy5 (y[5], n38, n39);
+and g40 (n40, x[7], k[0]);
+and g41 (n41, x[5], kb0);
+or g43 (n43, n40, kb0);
+or g44 (n44, n41, n33);
+and g45 (n45, n43, kb1);
+and g46 (n46, n44, k[1]);
+or gy6 (y[6], n45, n46);
+and g48 (n48, x[6], kb0);
+or g51 (n51, n48, n40);
+and g53 (n53, n51, k[1]);
+or gy7 (y[7], n45, n53);
+endmodule
+-------------------------------------------------------
+Pin INFO:
+Pin Name: y[0]
+Primary I/O: 
+Connected Wire: y[0]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: y[1]
+Primary I/O: 
+Connected Wire: y[1]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: y[2]
+Primary I/O: 
+Connected Wire: y[2]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: y[3]
+Primary I/O: 
+Connected Wire: y[3]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: y[4]
+Primary I/O: 
+Connected Wire: y[4]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: y[5]
+Primary I/O: 
+Connected Wire: y[5]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: y[6]
+Primary I/O: 
+Connected Wire: y[6]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: y[7]
+Primary I/O: 
+Connected Wire: y[7]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: x[0]
+Primary I/O: 
+Connected Wire: x[0]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: x[1]
+Primary I/O: 
+Connected Wire: x[1]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: x[2]
+Primary I/O: 
+Connected Wire: x[2]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: x[3]
+Primary I/O: 
+Connected Wire: x[3]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: x[4]
+Primary I/O: 
+Connected Wire: x[4]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: x[5]
+Primary I/O: 
+Connected Wire: x[5]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: x[6]
+Primary I/O: 
+Connected Wire: x[6]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: x[7]
+Primary I/O: 
+Connected Wire: x[7]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: k[0]
+Primary I/O: 
+Connected Wire: k[0]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: k[1]
+Primary I/O: 
+Connected Wire: k[1]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gbk0:o1
+Master Gate: gbk0
+Connected Wire: kb0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gbk0:n0
+Master Gate: gbk0
+Connected Wire: k[0]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gbk1:o1
+Master Gate: gbk1
+Connected Wire: kb1
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gbk1:n0
+Master Gate: gbk1
+Connected Wire: k[1]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g0:o1
+Master Gate: g0
+Connected Wire: n0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g0:n0
+Master Gate: g0
+Connected Wire: x[1]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g0:n1
+Master Gate: g0
+Connected Wire: k[0]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g1:o1
+Master Gate: g1
+Connected Wire: n1
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g1:n0
+Master Gate: g1
+Connected Wire: x[0]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g1:n1
+Master Gate: g1
+Connected Wire: k[0]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g2:o1
+Master Gate: g2
+Connected Wire: n2
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g2:n0
+Master Gate: g2
+Connected Wire: n0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g2:n1
+Master Gate: g2
+Connected Wire: kb0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g3:o1
+Master Gate: g3
+Connected Wire: n3
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g3:n0
+Master Gate: g3
+Connected Wire: n2
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g3:n1
+Master Gate: g3
+Connected Wire: kb1
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g4:o1
+Master Gate: g4
+Connected Wire: n4
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g4:n0
+Master Gate: g4
+Connected Wire: n1
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g4:n1
+Master Gate: g4
+Connected Wire: k[1]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy0:o1
+Master Gate: gy0
+Connected Wire: y[0]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy0:n0
+Master Gate: gy0
+Connected Wire: n3
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy0:n1
+Master Gate: gy0
+Connected Wire: n4
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g5:o1
+Master Gate: g5
+Connected Wire: n5
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g5:n0
+Master Gate: g5
+Connected Wire: x[2]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g5:n1
+Master Gate: g5
+Connected Wire: k[0]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g6:o1
+Master Gate: g6
+Connected Wire: n6
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g6:n0
+Master Gate: g6
+Connected Wire: x[0]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g6:n1
+Master Gate: g6
+Connected Wire: kb0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g8:o1
+Master Gate: g8
+Connected Wire: n8
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g8:n0
+Master Gate: g8
+Connected Wire: n5
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g8:n1
+Master Gate: g8
+Connected Wire: kb0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g9:o1
+Master Gate: g9
+Connected Wire: n9
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g9:n0
+Master Gate: g9
+Connected Wire: n6
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g9:n1
+Master Gate: g9
+Connected Wire: n0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g10:o1
+Master Gate: g10
+Connected Wire: n10
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g10:n0
+Master Gate: g10
+Connected Wire: n8
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g10:n1
+Master Gate: g10
+Connected Wire: kb1
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g11:o1
+Master Gate: g11
+Connected Wire: n11
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g11:n0
+Master Gate: g11
+Connected Wire: n9
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g11:n1
+Master Gate: g11
+Connected Wire: k[1]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy1:o1
+Master Gate: gy1
+Connected Wire: y[1]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy1:n0
+Master Gate: gy1
+Connected Wire: n10
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy1:n1
+Master Gate: gy1
+Connected Wire: n11
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g12:o1
+Master Gate: g12
+Connected Wire: n12
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g12:n0
+Master Gate: g12
+Connected Wire: x[3]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g12:n1
+Master Gate: g12
+Connected Wire: k[0]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g13:o1
+Master Gate: g13
+Connected Wire: n13
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g13:n0
+Master Gate: g13
+Connected Wire: x[1]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g13:n1
+Master Gate: g13
+Connected Wire: kb0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g15:o1
+Master Gate: g15
+Connected Wire: n15
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g15:n0
+Master Gate: g15
+Connected Wire: n12
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g15:n1
+Master Gate: g15
+Connected Wire: kb0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g16:o1
+Master Gate: g16
+Connected Wire: n16
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g16:n0
+Master Gate: g16
+Connected Wire: n13
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g16:n1
+Master Gate: g16
+Connected Wire: n5
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g17:o1
+Master Gate: g17
+Connected Wire: n17
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g17:n0
+Master Gate: g17
+Connected Wire: n15
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g17:n1
+Master Gate: g17
+Connected Wire: kb1
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g18:o1
+Master Gate: g18
+Connected Wire: n18
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g18:n0
+Master Gate: g18
+Connected Wire: n16
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g18:n1
+Master Gate: g18
+Connected Wire: k[1]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy2:o1
+Master Gate: gy2
+Connected Wire: y[2]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy2:n0
+Master Gate: gy2
+Connected Wire: n17
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy2:n1
+Master Gate: gy2
+Connected Wire: n18
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g19:o1
+Master Gate: g19
+Connected Wire: n19
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g19:n0
+Master Gate: g19
+Connected Wire: x[4]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g19:n1
+Master Gate: g19
+Connected Wire: k[0]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g20:o1
+Master Gate: g20
+Connected Wire: n20
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g20:n0
+Master Gate: g20
+Connected Wire: x[2]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g20:n1
+Master Gate: g20
+Connected Wire: kb0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g22:o1
+Master Gate: g22
+Connected Wire: n22
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g22:n0
+Master Gate: g22
+Connected Wire: n19
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g22:n1
+Master Gate: g22
+Connected Wire: kb0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g23:o1
+Master Gate: g23
+Connected Wire: n23
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g23:n0
+Master Gate: g23
+Connected Wire: n20
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g23:n1
+Master Gate: g23
+Connected Wire: n12
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g24:o1
+Master Gate: g24
+Connected Wire: n24
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g24:n0
+Master Gate: g24
+Connected Wire: n22
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g24:n1
+Master Gate: g24
+Connected Wire: kb1
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g25:o1
+Master Gate: g25
+Connected Wire: n25
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g25:n0
+Master Gate: g25
+Connected Wire: n23
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g25:n1
+Master Gate: g25
+Connected Wire: k[1]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy3:o1
+Master Gate: gy3
+Connected Wire: y[3]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy3:n0
+Master Gate: gy3
+Connected Wire: n24
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy3:n1
+Master Gate: gy3
+Connected Wire: n25
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g26:o1
+Master Gate: g26
+Connected Wire: n26
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g26:n0
+Master Gate: g26
+Connected Wire: x[5]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g26:n1
+Master Gate: g26
+Connected Wire: k[0]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g27:o1
+Master Gate: g27
+Connected Wire: n27
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g27:n0
+Master Gate: g27
+Connected Wire: x[3]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g27:n1
+Master Gate: g27
+Connected Wire: kb0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g29:o1
+Master Gate: g29
+Connected Wire: n29
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g29:n0
+Master Gate: g29
+Connected Wire: n26
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g29:n1
+Master Gate: g29
+Connected Wire: kb0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g30:o1
+Master Gate: g30
+Connected Wire: n30
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g30:n0
+Master Gate: g30
+Connected Wire: n27
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g30:n1
+Master Gate: g30
+Connected Wire: n19
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g31:o1
+Master Gate: g31
+Connected Wire: n31
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g31:n0
+Master Gate: g31
+Connected Wire: n29
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g31:n1
+Master Gate: g31
+Connected Wire: kb1
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g32:o1
+Master Gate: g32
+Connected Wire: n32
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g32:n0
+Master Gate: g32
+Connected Wire: n30
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g32:n1
+Master Gate: g32
+Connected Wire: k[1]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy4:o1
+Master Gate: gy4
+Connected Wire: y[4]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy4:n0
+Master Gate: gy4
+Connected Wire: n31
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy4:n1
+Master Gate: gy4
+Connected Wire: n32
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g33:o1
+Master Gate: g33
+Connected Wire: n33
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g33:n0
+Master Gate: g33
+Connected Wire: x[6]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g33:n1
+Master Gate: g33
+Connected Wire: k[0]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g34:o1
+Master Gate: g34
+Connected Wire: n34
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g34:n0
+Master Gate: g34
+Connected Wire: x[4]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g34:n1
+Master Gate: g34
+Connected Wire: kb0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g36:o1
+Master Gate: g36
+Connected Wire: n36
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g36:n0
+Master Gate: g36
+Connected Wire: n33
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g36:n1
+Master Gate: g36
+Connected Wire: kb0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g37:o1
+Master Gate: g37
+Connected Wire: n37
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g37:n0
+Master Gate: g37
+Connected Wire: n34
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g37:n1
+Master Gate: g37
+Connected Wire: n26
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g38:o1
+Master Gate: g38
+Connected Wire: n38
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g38:n0
+Master Gate: g38
+Connected Wire: n36
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g38:n1
+Master Gate: g38
+Connected Wire: kb1
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g39:o1
+Master Gate: g39
+Connected Wire: n39
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g39:n0
+Master Gate: g39
+Connected Wire: n37
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g39:n1
+Master Gate: g39
+Connected Wire: k[1]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy5:o1
+Master Gate: gy5
+Connected Wire: y[5]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy5:n0
+Master Gate: gy5
+Connected Wire: n38
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy5:n1
+Master Gate: gy5
+Connected Wire: n39
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g40:o1
+Master Gate: g40
+Connected Wire: n40
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g40:n0
+Master Gate: g40
+Connected Wire: x[7]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g40:n1
+Master Gate: g40
+Connected Wire: k[0]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g41:o1
+Master Gate: g41
+Connected Wire: n41
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g41:n0
+Master Gate: g41
+Connected Wire: x[5]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g41:n1
+Master Gate: g41
+Connected Wire: kb0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g43:o1
+Master Gate: g43
+Connected Wire: n43
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g43:n0
+Master Gate: g43
+Connected Wire: n40
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g43:n1
+Master Gate: g43
+Connected Wire: kb0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g44:o1
+Master Gate: g44
+Connected Wire: n44
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g44:n0
+Master Gate: g44
+Connected Wire: n41
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g44:n1
+Master Gate: g44
+Connected Wire: n33
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g45:o1
+Master Gate: g45
+Connected Wire: n45
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g45:n0
+Master Gate: g45
+Connected Wire: n43
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g45:n1
+Master Gate: g45
+Connected Wire: kb1
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g46:o1
+Master Gate: g46
+Connected Wire: n46
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g46:n0
+Master Gate: g46
+Connected Wire: n44
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g46:n1
+Master Gate: g46
+Connected Wire: k[1]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy6:o1
+Master Gate: gy6
+Connected Wire: y[6]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy6:n0
+Master Gate: gy6
+Connected Wire: n45
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy6:n1
+Master Gate: gy6
+Connected Wire: n46
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g48:o1
+Master Gate: g48
+Connected Wire: n48
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g48:n0
+Master Gate: g48
+Connected Wire: x[6]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g48:n1
+Master Gate: g48
+Connected Wire: kb0
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g51:o1
+Master Gate: g51
+Connected Wire: n51
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g51:n0
+Master Gate: g51
+Connected Wire: n48
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g51:n1
+Master Gate: g51
+Connected Wire: n40
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g53:o1
+Master Gate: g53
+Connected Wire: n53
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g53:n0
+Master Gate: g53
+Connected Wire: n51
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g53:n1
+Master Gate: g53
+Connected Wire: k[1]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy7:o1
+Master Gate: gy7
+Connected Wire: y[7]
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy7:n0
+Master Gate: gy7
+Connected Wire: n45
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy7:n1
+Master Gate: gy7
+Connected Wire: n53
+-------------------------------------------------------
+
+[rtl : ICCAD2021] make clean
+rm -f ./obj/Circuit.o ./obj/Cnf.o ./obj/Gate.o ./obj/Pin.o ./obj/Wire.o ./obj/main.o ./obj/Circuit.d ./obj/Cnf.d ./obj/Gate.d ./obj/Pin.d ./obj/Wire.d ./obj/main.d eco
+[rtl : ICCAD2021] ls
+README.md  example  makefile  obj  paper  result  run.py  src
+[rtl : ICCAD2021] exit
+logout
+Connection to rtl.postech.ac.kr closed.
+(base) jaemin@seojaemin-ui-MacBookPro ~ % ssh -p 5900 -Y jmseo@rtl.postech.ac.kr
+
+jmseo@rtl.postech.ac.kr's password: 
+Warning: No xauth data; using fake authentication data for X11 forwarding.
+Last login: Wed Jul 21 17:01:00 2021 from libretto.postech.ac.kr
+This server is CentOS ver.6
+Server name: rtl
+Currently Loaded Modulefiles:
+ 1) license/license      3) cosmosscope/2017.12   5) syn/2018.06     7) ic/617       9) gcc-6/5.4.0  
+ 2) hspice/2017.12.SP2   4) xcelium/18.03         6) innovus/17.10   8) pt/2018.06  
+[rtl : jmseo] ls
+CDS.log                  Primetime.tar                       panic.log.rtl.postech.ac.kr.262534
+CDS.log.cdslck           cds.lib                             panic.log.rtl.postech.ac.kr.262935
+CSDL_tutorial_Innovus    hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_PrimeTime  lab                                 panic.log.rtl.postech.ac.kr.267372
+ICCAD2021                lab.tar                             panic.log.rtl.postech.ac.kr.273843
+Innovus.tar              panic.log.rtl.postech.ac.kr.133355  pygcn
+Primetime                panic.log.rtl.postech.ac.kr.148245  simulation
+[rtl : jmseo] cd ICCAD2021/
+[rtl : ICCAD2021] ls
+README.md  example  makefile  obj  paper  result  run.py  src
+[rtl : ICCAD2021] vim makefile
+[rtl : ICCAD2021] vim obj
+[rtl : ICCAD2021] make
+g++ -std=c++17 -W -Wall -O3 -m64    -c src/Circuit.cpp -o obj/Circuit.o -MD -static-libstdc++
+g++ -std=c++17 -W -Wall -O3 -m64    -c src/Cnf.cpp -o obj/Cnf.o -MD -static-libstdc++
+g++ -std=c++17 -W -Wall -O3 -m64    -c src/Gate.cpp -o obj/Gate.o -MD -static-libstdc++
+g++ -std=c++17 -W -Wall -O3 -m64    -c src/Pin.cpp -o obj/Pin.o -MD -static-libstdc++
+g++ -std=c++17 -W -Wall -O3 -m64    -c src/Wire.cpp -o obj/Wire.o -MD -static-libstdc++
+g++ -std=c++17 -W -Wall -O3 -m64    -c src/main.cpp -o obj/main.o -MD -static-libstdc++
+g++ -std=c++17 -W -Wall -O3 -m64    ./obj/Circuit.o ./obj/Cnf.o ./obj/Gate.o ./obj/Pin.o ./obj/Wire.o ./obj/main.o -o eco -static-libstdc++ 
+[rtl : ICCAD2021] ls
+README.md  eco  example  makefile  obj  paper  result  run.py  src
+[rtl : ICCAD2021] vim obj
+[rtl : ICCAD2021] ./eco 
+README.md  eco*       example/   makefile   obj/       paper/     result/    run.py     src/
+[rtl : ICCAD2021] python run.py
+
+
+====================================================================================================
+Functional ECO: Examples available
+
+(1) test4
+(2) test06_official
+(3) test05_official
+(4) test5
+(5) test2
+(6) test6
+(7) test1
+(8) test8
+(9) test04_official
+(10) test07_official
+(11) test7
+(12) test3
+(13) test03_official
+====================================================================================================
+
+Select index: 5
+====================================================================================================
+ERROR: Incorrect # of files
+[rtl : ICCAD2021] python run.py
+
+
+====================================================================================================
+Functional ECO: Examples available
+
+(1) test4
+(2) test06_official
+(3) test05_official
+(4) test5
+(5) test2
+(6) test6
+(7) test1
+(8) test8
+(9) test04_official
+(10) test07_official
+(11) test7
+(12) test3
+(13) test03_official
+====================================================================================================
+
+Select index: 1
+====================================================================================================
+
+RUN: ./eco ./example/test4/r1.v ./example/test4/r2.v ./example/test4/g1.v ./result/patch.v
+====================================================================================================
+module top(a, b, c, d, e, f, x, y);
+input a
+input b
+input c
+input d
+input e
+input f
+output x
+output y
+wire x;
+wire y;
+wire a;
+wire b;
+wire c;
+wire d;
+wire e;
+wire f;
+wire n1;
+wire n2;
+wire n3;
+wire n4;
+wire n5;
+wire n6;
+wire n7;
+wire n8;
+wire n9;
+wire n10;
+wire n11;
+wire n12;
+wire n13;
+wire n14;
+wire n15;
+wire n16;
+wire n17;
+wire n18;
+wire n19;
+wire n20;
+wire n21;
+wire n22;
+wire n23;
+wire n24;
+wire n25;
+wire n26;
+and g1 (n1, a, b);
+or g2 (n2, c, d);
+and g3 (n3, n1, n2);
+not g4 (n4, n1);
+not g5 (n5, c);
+and g6 (n6, n4, n5);
+xor g7 (n7, d, f);
+and g8 (n8, n6, n7);
+not g9 (n9, n6);
+and g10 (n10, n9, d);
+not g11 (n11, n10);
+and g12 (n12, e, f);
+and g13 (n13, n11, n12);
+and g14 (n14, n13, a);
+or g15 (n15, n3, n8);
+or g16 (n16, n10, n14);
+or gx (x, n15, n16);
+and g17 (n17, c, d);
+and g18 (n18, n1, n17);
+and g19 (n19, n6, e);
+or g20 (n20, a, b);
+or g21 (n21, e, f);
+or g22 (n22, n20, n21);
+and g23 (n23, n10, n22);
+and g24 (n24, n13, b);
+or g25 (n25, n18, n19);
+or g26 (n26, n23, n24);
+or gy (y, n25, n26);
+endmodule
+-------------------------------------------------------
+Pin INFO:
+Pin Name: x
+Primary I/O: 
+Connected Wire: x
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: y
+Primary I/O: 
+Connected Wire: y
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: a
+Primary I/O: 
+Connected Wire: a
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: b
+Primary I/O: 
+Connected Wire: b
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: c
+Primary I/O: 
+Connected Wire: c
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: d
+Primary I/O: 
+Connected Wire: d
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: e
+Primary I/O: 
+Connected Wire: e
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: f
+Primary I/O: 
+Connected Wire: f
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g1:o1
+Master Gate: g1
+Connected Wire: n1
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g1:n0
+Master Gate: g1
+Connected Wire: a
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g1:n1
+Master Gate: g1
+Connected Wire: b
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g2:o1
+Master Gate: g2
+Connected Wire: n2
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g2:n0
+Master Gate: g2
+Connected Wire: c
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g2:n1
+Master Gate: g2
+Connected Wire: d
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g3:o1
+Master Gate: g3
+Connected Wire: n3
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g3:n0
+Master Gate: g3
+Connected Wire: n1
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g3:n1
+Master Gate: g3
+Connected Wire: n2
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g4:o1
+Master Gate: g4
+Connected Wire: n4
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g4:n0
+Master Gate: g4
+Connected Wire: n1
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g5:o1
+Master Gate: g5
+Connected Wire: n5
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g5:n0
+Master Gate: g5
+Connected Wire: c
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g6:o1
+Master Gate: g6
+Connected Wire: n6
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g6:n0
+Master Gate: g6
+Connected Wire: n4
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g6:n1
+Master Gate: g6
+Connected Wire: n5
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g7:o1
+Master Gate: g7
+Connected Wire: n7
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g7:n0
+Master Gate: g7
+Connected Wire: d
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g7:n1
+Master Gate: g7
+Connected Wire: f
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g8:o1
+Master Gate: g8
+Connected Wire: n8
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g8:n0
+Master Gate: g8
+Connected Wire: n6
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g8:n1
+Master Gate: g8
+Connected Wire: n7
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g9:o1
+Master Gate: g9
+Connected Wire: n9
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g9:n0
+Master Gate: g9
+Connected Wire: n6
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g10:o1
+Master Gate: g10
+Connected Wire: n10
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g10:n0
+Master Gate: g10
+Connected Wire: n9
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g10:n1
+Master Gate: g10
+Connected Wire: d
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g11:o1
+Master Gate: g11
+Connected Wire: n11
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g11:n0
+Master Gate: g11
+Connected Wire: n10
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g12:o1
+Master Gate: g12
+Connected Wire: n12
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g12:n0
+Master Gate: g12
+Connected Wire: e
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g12:n1
+Master Gate: g12
+Connected Wire: f
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g13:o1
+Master Gate: g13
+Connected Wire: n13
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g13:n0
+Master Gate: g13
+Connected Wire: n11
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g13:n1
+Master Gate: g13
+Connected Wire: n12
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g14:o1
+Master Gate: g14
+Connected Wire: n14
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g14:n0
+Master Gate: g14
+Connected Wire: n13
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g14:n1
+Master Gate: g14
+Connected Wire: a
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g15:o1
+Master Gate: g15
+Connected Wire: n15
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g15:n0
+Master Gate: g15
+Connected Wire: n3
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g15:n1
+Master Gate: g15
+Connected Wire: n8
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g16:o1
+Master Gate: g16
+Connected Wire: n16
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g16:n0
+Master Gate: g16
+Connected Wire: n10
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g16:n1
+Master Gate: g16
+Connected Wire: n14
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gx:o1
+Master Gate: gx
+Connected Wire: x
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gx:n0
+Master Gate: gx
+Connected Wire: n15
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gx:n1
+Master Gate: gx
+Connected Wire: n16
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g17:o1
+Master Gate: g17
+Connected Wire: n17
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g17:n0
+Master Gate: g17
+Connected Wire: c
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g17:n1
+Master Gate: g17
+Connected Wire: d
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g18:o1
+Master Gate: g18
+Connected Wire: n18
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g18:n0
+Master Gate: g18
+Connected Wire: n1
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g18:n1
+Master Gate: g18
+Connected Wire: n17
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g19:o1
+Master Gate: g19
+Connected Wire: n19
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g19:n0
+Master Gate: g19
+Connected Wire: n6
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g19:n1
+Master Gate: g19
+Connected Wire: e
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g20:o1
+Master Gate: g20
+Connected Wire: n20
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g20:n0
+Master Gate: g20
+Connected Wire: a
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g20:n1
+Master Gate: g20
+Connected Wire: b
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g21:o1
+Master Gate: g21
+Connected Wire: n21
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g21:n0
+Master Gate: g21
+Connected Wire: e
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g21:n1
+Master Gate: g21
+Connected Wire: f
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g22:o1
+Master Gate: g22
+Connected Wire: n22
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g22:n0
+Master Gate: g22
+Connected Wire: n20
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g22:n1
+Master Gate: g22
+Connected Wire: n21
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g23:o1
+Master Gate: g23
+Connected Wire: n23
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g23:n0
+Master Gate: g23
+Connected Wire: n10
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g23:n1
+Master Gate: g23
+Connected Wire: n22
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g24:o1
+Master Gate: g24
+Connected Wire: n24
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g24:n0
+Master Gate: g24
+Connected Wire: n13
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g24:n1
+Master Gate: g24
+Connected Wire: b
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g25:o1
+Master Gate: g25
+Connected Wire: n25
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g25:n0
+Master Gate: g25
+Connected Wire: n18
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g25:n1
+Master Gate: g25
+Connected Wire: n19
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g26:o1
+Master Gate: g26
+Connected Wire: n26
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g26:n0
+Master Gate: g26
+Connected Wire: n23
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: g26:n1
+Master Gate: g26
+Connected Wire: n24
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy:o1
+Master Gate: gy
+Connected Wire: y
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy:n0
+Master Gate: gy
+Connected Wire: n25
+-------------------------------------------------------
+
+-------------------------------------------------------
+Pin INFO:
+Pin Name: gy:n1
+Master Gate: gy
+Connected Wire: n26
+-------------------------------------------------------
+
+[rtl : ICCAD2021] :q
+
+CORRECT>: (y|n|e|a)? no
+:q: Command not found.
+[rtl : ICCAD2021] exit
+logout
+Connection to rtl.postech.ac.kr closed.
+(base) jaemin@seojaemin-ui-MacBookPro ~ % ssh -p 5900 -Y jmseo@rtl.postech.ac.kr
+
+jmseo@rtl.postech.ac.kr's password: 
+Permission denied, please try again.
+jmseo@rtl.postech.ac.kr's password: 
+Permission denied, please try again.
+jmseo@rtl.postech.ac.kr's password: 
+jmseo@rtl.postech.ac.kr: Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).
+(base) jaemin@seojaemin-ui-MacBookPro ~ % ls
+Applications			Library				matlab_crash_dump.80654-1
+Creative Cloud Files		Movies				matlab_crash_dump.85464-1
+Desktop				Music				opt
+Documents			OneDrive			workspace
+Downloads			Pictures
+Dropbox				Public
+(base) jaemin@seojaemin-ui-MacBookPro ~ % ssh -p 5900 -Y jmseo@rtl.postech.ac.kr
+
+jmseo@rtl.postech.ac.kr's password: 
+Warning: No xauth data; using fake authentication data for X11 forwarding.
+Last login: Wed Jul 21 17:46:07 2021 from libretto.postech.ac.kr
+This server is CentOS ver.6
+Server name: rtl
+Currently Loaded Modulefiles:
+ 1) license/license      3) cosmosscope/2017.12   5) syn/2018.06     7) ic/617       9) gcc-6/5.4.0  
+ 2) hspice/2017.12.SP2   4) xcelium/18.03         6) innovus/17.10   8) pt/2018.06  
+[rtl : jmseo] ls
+CDS.log                  Primetime.tar                       panic.log.rtl.postech.ac.kr.262534
+CDS.log.cdslck           cds.lib                             panic.log.rtl.postech.ac.kr.262935
+CSDL_tutorial_Innovus    hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_PrimeTime  lab                                 panic.log.rtl.postech.ac.kr.267372
+ICCAD2021                lab.tar                             panic.log.rtl.postech.ac.kr.273843
+Innovus.tar              panic.log.rtl.postech.ac.kr.133355  pygcn
+Primetime                panic.log.rtl.postech.ac.kr.148245  simulation
+[rtl : jmseo] git clone git@github.com:jaemin0502/online-cv.git
+Initialized empty Git repository in /class/intern/jmseo/online-cv/.git/
+remote: Enumerating objects: 2070, done.
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 2070 (delta 0), reused 3 (delta 0), pack-reused 2062
+Receiving objects: 100% (2070/2070), 4.08 MiB | 1.94 MiB/s, done.
+Resolving deltas: 100% (458/458), done.
+[rtl : jmseo] ls
+CDS.log                  cds.lib                             panic.log.rtl.postech.ac.kr.262935
+CDS.log.cdslck           hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_Innovus    lab                                 panic.log.rtl.postech.ac.kr.267372
+CSDL_tutorial_PrimeTime  lab.tar                             panic.log.rtl.postech.ac.kr.273843
+ICCAD2021                online-cv                           pygcn
+Innovus.tar              panic.log.rtl.postech.ac.kr.133355  simulation
+Primetime                panic.log.rtl.postech.ac.kr.148245
+Primetime.tar            panic.log.rtl.postech.ac.kr.262534
+[rtl : jmseo] ls
+CDS.log                  cds.lib                             panic.log.rtl.postech.ac.kr.262935
+CDS.log.cdslck           hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_Innovus    lab                                 panic.log.rtl.postech.ac.kr.267372
+CSDL_tutorial_PrimeTime  lab.tar                             panic.log.rtl.postech.ac.kr.273843
+ICCAD2021                online-cv                           pygcn
+Innovus.tar              panic.log.rtl.postech.ac.kr.133355  simulation
+Primetime                panic.log.rtl.postech.ac.kr.148245
+Primetime.tar            panic.log.rtl.postech.ac.kr.262534
+[rtl : jmseo] cd online-cv
+[rtl : online-cv] ls
+README.md  _config.yml  _data  _includes  _layouts  _sass  assets  favicon.ico  index.html
+[rtl : online-cv] cd _data
+[rtl : _data] ls
+data.yml
+[rtl : _data] vim data.yml
+[rtl : _data] vim data.yml
+[rtl : _data] client_loop: send disconnect: Broken pipe
+(base) jaemin@seojaemin-ui-MacBookPro ~ % ssh -p 5900 -Y jmseo@rtl.postech.ac.kr
+
+jmseo@rtl.postech.ac.kr's password: 
+Warning: No xauth data; using fake authentication data for X11 forwarding.
+Last login: Wed Jul 21 22:17:53 2021 from libretto.postech.ac.kr
+This server is CentOS ver.6
+Server name: rtl
+Currently Loaded Modulefiles:
+ 1) license/license      3) cosmosscope/2017.12   5) syn/2018.06     7) ic/617       9) gcc-6/5.4.0  
+ 2) hspice/2017.12.SP2   4) xcelium/18.03         6) innovus/17.10   8) pt/2018.06  
+[rtl : jmseo] ls
+CDS.log                  cds.lib                             panic.log.rtl.postech.ac.kr.262935
+CDS.log.cdslck           hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_Innovus    lab                                 panic.log.rtl.postech.ac.kr.267372
+CSDL_tutorial_PrimeTime  lab.tar                             panic.log.rtl.postech.ac.kr.273843
+ICCAD2021                online-cv                           pygcn
+Innovus.tar              panic.log.rtl.postech.ac.kr.133355  simulation
+Primetime                panic.log.rtl.postech.ac.kr.148245
+Primetime.tar            panic.log.rtl.postech.ac.kr.262534
+[rtl : jmseo] cd ICCAD2021
+[rtl : ICCAD2021] cd ..
+[rtl : jmseo] cd online-cv
+[rtl : online-cv] ls
+README.md  _config.yml  _data  _includes  _layouts  _sass  assets  favicon.ico  index.html
+[rtl : online-cv] cd ..
+[rtl : jmseo] git remote add origin git@github.com:jaemin0502/online-cv.git
+fatal: Not a git repository (or any of the parent directories): .git
+[rtl : jmseo] git remote add origin https://github.com/jaemin0502/online-cv.git
+fatal: Not a git repository (or any of the parent directories): .git
+[rtl : jmseo] git branch --remote
+fatal: Not a git repository (or any of the parent directories): .git
+[rtl : jmseo] ls
+CDS.log                  cds.lib                             panic.log.rtl.postech.ac.kr.262935
+CDS.log.cdslck           hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_Innovus    lab                                 panic.log.rtl.postech.ac.kr.267372
+CSDL_tutorial_PrimeTime  lab.tar                             panic.log.rtl.postech.ac.kr.273843
+ICCAD2021                online-cv                           pygcn
+Innovus.tar              panic.log.rtl.postech.ac.kr.133355  simulation
+Primetime                panic.log.rtl.postech.ac.kr.148245
+Primetime.tar            panic.log.rtl.postech.ac.kr.262534
+[rtl : jmseo] git branch --remote
+fatal: Not a git repository (or any of the parent directories): .git
+[rtl : jmseo] git remote -v
+fatal: Not a git repository (or any of the parent directories): .git
+[rtl : jmseo] git init
+Initialized empty Git repository in /class/intern/jmseo/.git/
+[rtl : jmseo] git remote add https://github.com/jaemin0502/online-cv.git
+usage: git remote add [<options>] <name> <url>
+
+    -f, --fetch           fetch the remote branches
+    -t, --track <branch>  branch(es) to track
+    -m, --master <branch>
+                          master branch
+    --mirror              no separate remotes
+
+[rtl : jmseo] ls
+CDS.log                  cds.lib                             panic.log.rtl.postech.ac.kr.262935
+CDS.log.cdslck           hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_Innovus    lab                                 panic.log.rtl.postech.ac.kr.267372
+CSDL_tutorial_PrimeTime  lab.tar                             panic.log.rtl.postech.ac.kr.273843
+ICCAD2021                online-cv                           pygcn
+Innovus.tar              panic.log.rtl.postech.ac.kr.133355  simulation
+Primetime                panic.log.rtl.postech.ac.kr.148245
+Primetime.tar            panic.log.rtl.postech.ac.kr.262534
+[rtl : jmseo] git push origin master
+fatal: 'origin' does not appear to be a git repository
+fatal: The remote end hung up unexpectedly
+[rtl : jmseo] git remote
+[rtl : jmseo] git remote
+[rtl : jmseo] git remote -v
+[rtl : jmseo] git remote add origin https://github.com/jaemin0502/online-cv.git
+[rtl : jmseo] git remote
+origin
+[rtl : jmseo] git push origin master
+error: The requested URL returned error: 403 Forbidden while accessing https://github.com/jaemin0502/online-cv.git/info/refs
+
+fatal: HTTP request failed
+[rtl : jmseo] git remote set-url origin https://jaemin0502@github.com/jaemin0502/online-cv.git
+[rtl : jmseo] git push -u origin master
+error: src refspec master does not match any.
+error: failed to push some refs to 'https://jaemin0502@github.com/jaemin0502/online-cv.git'
+[rtl : jmseo] git init
+Reinitialized existing Git repository in /class/intern/jmseo/.git/
+[rtl : jmseo] git add .
+[rtl : jmseo] git commit -m "message"
+[master (root-commit) d35aef2] message
+ 708 files changed, 1129081 insertions(+), 0 deletions(-)
+ create mode 100644 .141.223.165.213_27020.txt
+ create mode 100644 .141.223.165.217_27020.txt
+ create mode 100644 .CosmosScope/Settings/2017.12.0/scope.user
+ create mode 100644 .HSPICE.html
+ create mode 100644 .Xauthority
+ create mode 100644 .artist_states/jaemin/.sevSaveDir
+ create mode 100644 .artist_states/jaemin/inverter/.sevSaveDir
+ create mode 100644 .artist_states/jaemin/inverter/spectre/.sevSaveDir
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/.sevSaveDir
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/ADE_state.info
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/analyses
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/convergence
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/cosimOptions
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/devCheckingSetup
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/environmentOptions
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/graphicalStimuli
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/mdlOptions
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/modelSetup
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/opPoints
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/outputs
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/outputsScripts
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/paramSetup
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/relxOptions
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/rfstim
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/simulationFiles
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/simulatorOptions
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/spList
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/sprobeList
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/subckts
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/turboOptions
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/variables
+ create mode 100644 .artist_states/jaemin/inverter/spectre/state1/waveformSetup_ws/waveformSetup_ws_1.grf
+ create mode 100755 .bash_logout
+ create mode 100755 .bash_profile
+ create mode 100755 .bashrc
+ create mode 100644 .cadence/dfII/viva/viva.ini
+ create mode 100644 .config/Cadence Design Systems, Inc.conf
+ create mode 100644 .config/Trolltech.conf
+ create mode 100644 .config/cadence/.port
+ create mode 100755 .config/cadence/_CACHE_SEARCH
+ create mode 100644 .config/cadence/help02.30-p006.conf
+ create mode 100644 .config/cadence/history.txt
+ create mode 100644 .config/cadence/hs.stat
+ create mode 100755 .emacs
+ create mode 100644 .gitconfig
+ create mode 100644 .gnome2/keyrings/login.keyring
+ create mode 100755 .history
+ create mode 100755 .kshrc
+ create mode 100644 .libmgr
+ create mode 100755 .mkshrc
+ create mode 100644 .ssh/id_rsa
+ create mode 100644 .ssh/id_rsa.pub
+ create mode 100644 .ssh/known_hosts
+ create mode 100644 .tcshrc
+ create mode 100644 .vim/.netrwhist
+ create mode 100644 .viminfo
+ create mode 100755 .zshrc
+ create mode 100644 CDS.log
+ create mode 100644 CDS.log.cdslck
+ create mode 100644 CSDL_tutorial_Innovus/desdir/constraints/usb_phy.sdc
+ create mode 100644 CSDL_tutorial_Innovus/desdir/netlist/usb_phy.v
+ create mode 100644 CSDL_tutorial_Innovus/libdir/captbl/cln65g+_1p08m+alrdl_top2_cbest.captable
+ create mode 100644 CSDL_tutorial_Innovus/libdir/captbl/cln65g+_1p08m+alrdl_top2_cworst.captable
+ create mode 100644 CSDL_tutorial_Innovus/libdir/lef/tcbn65gplus_8lmT2.lef
+ create mode 100644 CSDL_tutorial_Innovus/libdir/lib/tcbn65gplusbc.lib
+ create mode 100644 CSDL_tutorial_Innovus/libdir/lib/tcbn65gpluswc.lib
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/CTS.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/Floorplan.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/LoadDesign.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/Place.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/Powerplan.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/ReportDesign.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/Route.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/AAE/persistAaeAr.dat
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/AAE/vaMgrAr.dat
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/ccopt/clock_trees.tcl.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/ccopt/prop_store_1.tcl.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/ccopt/prop_store_2.tcl.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/ccopt/skew_groups.tcl.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/gui.pref.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/inn.cmd.gz
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/libs/lef/tcbn65gplus_8lmT2.lef
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/libs/mmmc/cln65g+_1p08m+alrdl_top2_cbest.captable
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/libs/mmmc/cln65g+_1p08m+alrdl_top2_cworst.captable
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/libs/mmmc/tcbn65gplusbc.lib
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/libs/mmmc/tcbn65gpluswc.lib
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/mmmc/modes/CON/CON.sdc
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/mmmc/views/BC_VIEW/latency.sdc
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/mmmc/views/WC_VIEW/latency.sdc
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.aae.settings
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.apa
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.db.da.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.dbinfo
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.fp.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.fp.spr.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.globals
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.init
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.metric.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.mode
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.opconds
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.pg.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.place.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.ppcmd
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.prop
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.route.congmap.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.route.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.symtbl.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.v.bin
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy.v.bin_lib
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/usb_phy_power_constraints.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/cts.enc.dat/viewDefinition.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/gui.pref.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/inn.cmd.gz
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/libs/lef/tcbn65gplus_8lmT2.lef
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/libs/mmmc/cln65g+_1p08m+alrdl_top2_cbest.captable
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/libs/mmmc/cln65g+_1p08m+alrdl_top2_cworst.captable
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/libs/mmmc/tcbn65gplusbc.lib
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/libs/mmmc/tcbn65gpluswc.lib
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/libs/mmmc/usb_phy.sdc
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/usb_phy.dbinfo
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/usb_phy.fp.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/usb_phy.fp.spr.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/usb_phy.globals
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/usb_phy.init
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/usb_phy.mode
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/usb_phy.opconds
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/usb_phy.place.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/usb_phy.prop
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/usb_phy.route.congmap.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/usb_phy.route.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/usb_phy.symtbl.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/usb_phy.v.bin
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/usb_phy.v.bin_lib
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/usb_phy_power_constraints.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/floorplan.enc.dat/viewDefinition.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/AAE/persistAaeAr.dat
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/AAE/vaMgrAr.dat
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/gui.pref.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/inn.cmd.gz
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/libs/lef/tcbn65gplus_8lmT2.lef
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/libs/mmmc/cln65g+_1p08m+alrdl_top2_cbest.captable
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/libs/mmmc/cln65g+_1p08m+alrdl_top2_cworst.captable
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/libs/mmmc/tcbn65gplusbc.lib
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/libs/mmmc/tcbn65gpluswc.lib
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/mmmc/modes/CON/CON.sdc
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/mmmc/views/BC_VIEW/latency.sdc
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/mmmc/views/WC_VIEW/latency.sdc
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.aae.settings
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.dbinfo
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.fp.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.fp.spr.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.globals
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.init
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.metric.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.mode
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.opconds
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.pg.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.place.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.ppcmd
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.prop
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.route.congmap.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.route.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.symtbl.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.v.bin
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy.v.bin_lib
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/usb_phy_power_constraints.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/placement.enc.dat/viewDefinition.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/gui.pref.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/inn.cmd.gz
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/libs/lef/tcbn65gplus_8lmT2.lef
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/libs/mmmc/cln65g+_1p08m+alrdl_top2_cbest.captable
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/libs/mmmc/cln65g+_1p08m+alrdl_top2_cworst.captable
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/libs/mmmc/tcbn65gplusbc.lib
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/libs/mmmc/tcbn65gpluswc.lib
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/libs/mmmc/usb_phy.sdc
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy.dbinfo
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy.fp.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy.fp.spr.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy.globals
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy.init
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy.mode
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy.opconds
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy.pg.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy.place.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy.ppcmd
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy.prop
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy.route.congmap.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy.route.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy.symtbl.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy.v.bin
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy.v.bin_lib
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/usb_phy_power_constraints.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/powerplan.enc.dat/viewDefinition.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/AAE/persistAaeAr.dat
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/AAE/vaMgrAr.dat
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/ccopt/clock_trees.tcl.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/ccopt/prop_store_1.tcl.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/ccopt/prop_store_2.tcl.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/ccopt/skew_groups.tcl.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/gui.pref.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/inn.cmd.gz
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/libs/lef/tcbn65gplus_8lmT2.lef
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/libs/mmmc/cln65g+_1p08m+alrdl_top2_cbest.captable
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/libs/mmmc/cln65g+_1p08m+alrdl_top2_cworst.captable
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/libs/mmmc/tcbn65gplusbc.lib
+ create mode 120000 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/libs/mmmc/tcbn65gpluswc.lib
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/mmmc/modes/CON/CON.sdc
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/mmmc/views/BC_VIEW/latency.sdc
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/mmmc/views/WC_VIEW/latency.sdc
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.aae.settings
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.apa
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.db.da.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.dbinfo
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.fp.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.fp.spr.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.globals
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.init
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.marker.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.metric.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.mode
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.opconds
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.pg.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.place.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.ppcmd
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.prop
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.route.congmap.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.route.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.symtbl.gz
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.v.bin
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy.v.bin_lib
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/usb_phy_power_constraints.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/db/route.enc.dat/viewDefinition.tcl
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/innovus.cmd
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/innovus.log
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/innovus.logv
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/streamOut.map
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy.main.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy.main.htm.ascii
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_IoConnectNonIoInst.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_antenna.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_cellWithMaxCap.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_cellWithMaxTran.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_clock.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_dontTouch.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_dontUse.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_io.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_layer.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_no-drivenNets.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_pgPinConnectivity.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_pinConnectivity.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_pinLayer.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_pinWithoutTiming.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_powerArea.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_stdCellsInNetlist.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_unplacedIO.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/summaryReport/usb_phy_via_layer_VIA7.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/usb_phy.def
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/usb_phy.gds
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/usb_phy.post_route.setup.timing.rpt
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/usb_phy.spef
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/usb_phy_via_layer_VIA1.htmsummaryReport/usb_phy_via_layer_CO.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/usb_phy_via_layer_VIA2.htmsummaryReport/usb_phy_via_layer_VIA1.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/usb_phy_via_layer_VIA3.htmsummaryReport/usb_phy_via_layer_VIA2.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/usb_phy_via_layer_VIA4.htmsummaryReport/usb_phy_via_layer_VIA3.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/usb_phy_via_layer_VIA5.htmsummaryReport/usb_phy_via_layer_VIA4.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/usb_phy_via_layer_VIA6.htmsummaryReport/usb_phy_via_layer_VIA5.htm
+ create mode 100644 CSDL_tutorial_Innovus/rundir/run0/usb_phy_via_layer_VIA7.htmsummaryReport/usb_phy_via_layer_VIA6.htm
+ create mode 100644 CSDL_tutorial_PrimeTime/contest.db
+ create mode 100644 CSDL_tutorial_PrimeTime/parasitics_command.log
+ create mode 100644 CSDL_tutorial_PrimeTime/pt_cmds.tcl
+ create mode 100644 CSDL_tutorial_PrimeTime/pt_shell_command.log
+ create mode 100644 CSDL_tutorial_PrimeTime/run_pt.tcl
+ create mode 100644 CSDL_tutorial_PrimeTime/size.tcl
+ create mode 100644 CSDL_tutorial_PrimeTime/usb_phy.def
+ create mode 100644 CSDL_tutorial_PrimeTime/usb_phy.sdc
+ create mode 100644 CSDL_tutorial_PrimeTime/usb_phy.spef
+ create mode 100644 CSDL_tutorial_PrimeTime/usb_phy.v
+ create mode 100644 CSDL_tutorial_PrimeTime/usb_phy_sizing.rpt
+ create mode 100644 CSDL_tutorial_PrimeTime/usb_phy_timing_after_sizing.rpt
+ create mode 100644 CSDL_tutorial_PrimeTime/usb_phy_timing_before_sizing.rpt
+ create mode 160000 ICCAD2021
+ create mode 100755 Innovus.tar
+ create mode 100755 Primetime.tar
+ create mode 100644 Primetime/CSDL_tutorial_PrimeTime/contest.db
+ create mode 100644 Primetime/CSDL_tutorial_PrimeTime/parasitics_command.log
+ create mode 100644 Primetime/CSDL_tutorial_PrimeTime/pt_cmds.tcl
+ create mode 100644 Primetime/CSDL_tutorial_PrimeTime/pt_shell_command.log
+ create mode 100644 Primetime/CSDL_tutorial_PrimeTime/run_pt.tcl
+ create mode 100644 Primetime/CSDL_tutorial_PrimeTime/size.tcl
+ create mode 100644 Primetime/CSDL_tutorial_PrimeTime/usb_phy.def
+ create mode 100644 Primetime/CSDL_tutorial_PrimeTime/usb_phy.sdc
+ create mode 100644 Primetime/CSDL_tutorial_PrimeTime/usb_phy.spef
+ create mode 100644 Primetime/CSDL_tutorial_PrimeTime/usb_phy.v
+ create mode 100644 Primetime/CSDL_tutorial_PrimeTime/usb_phy_sizing.rpt
+ create mode 100644 Primetime/CSDL_tutorial_PrimeTime/usb_phy_timing_after_sizing.rpt
+ create mode 100644 Primetime/CSDL_tutorial_PrimeTime/usb_phy_timing_before_sizing.rpt
+ create mode 100755 Primetime/Primetime.tar
+ create mode 100644 cds.lib
+ create mode 100644 hspice/.cadence/dfII/Navigator/Options.xml
+ create mode 100644 hspice/.cadence/dfII/history/jmseo.history
+ create mode 100644 hspice/.cadence/dfII/viva/calcFuncPanelDefaults.ini
+ create mode 100644 hspice/.cadence/dfII/viva/viva.ini
+ create mode 100644 hspice/CDS.log
+ create mode 100644 hspice/CDS.log.cdslck
+ create mode 100755 hspice/HL18G-S3.7S.lib
+ create mode 100644 hspice/Inv.ic0
+ create mode 100644 hspice/Inv.pa0
+ create mode 100644 hspice/Inv.sp
+ create mode 100644 hspice/Inv.st0
+ create mode 100644 hspice/Inv.tr0
+ create mode 100644 hspice/NewLibrary2/.oalib
+ create mode 100644 hspice/NewLibrary2/cdsinfo.tag
+ create mode 100644 hspice/NewLibrary3/.oalib
+ create mode 100644 hspice/NewLibrary3/cdsinfo.tag
+ create mode 100644 hspice/cds.lib
+ create mode 100644 hspice/cdsLibEditor.log
+ create mode 100644 hspice/fortest/.oalib
+ create mode 100644 hspice/fortest/cdsinfo.tag
+ create mode 100644 hspice/fortest2/.oalib
+ create mode 100644 hspice/fortest2/cdsinfo.tag
+ create mode 100644 hspice/fortest3/.oalib
+ create mode 100644 hspice/fortest3/cdsinfo.tag
+ create mode 100644 hspice/fortest4/.oalib
+ create mode 100644 hspice/fortest4/cdsinfo.tag
+ create mode 100644 hspice/fortest4/tech.db
+ create mode 100644 hspice/fortest5/.oalib
+ create mode 100644 hspice/fortest5/Newcell/data.dm
+ create mode 100644 hspice/fortest5/Newcell/schematic/data.dm
+ create mode 100644 hspice/fortest5/Newcell/schematic/master.tag
+ create mode 100644 hspice/fortest5/Newcell/schematic/sch.oa
+ create mode 100644 hspice/fortest5/Newcell/schematic/thumbnail_128x128.png
+ create mode 100644 hspice/fortest5/Newcell/symbol/master.tag
+ create mode 100644 hspice/fortest5/Newcell/symbol/symbol.oa
+ create mode 100644 hspice/fortest5/Newcell/symbol/thumbnail_128x128.png
+ create mode 100644 hspice/fortest5/cdsinfo.tag
+ create mode 100644 hspice/fortest5/data.dm
+ create mode 100644 hspice/fortest5/nandcell/data.dm
+ create mode 100644 hspice/fortest5/nandcell/schematic/data.dm
+ create mode 100644 hspice/fortest5/nandcell/schematic/master.tag
+ create mode 100644 hspice/fortest5/nandcell/schematic/sch.oa
+ create mode 100644 hspice/fortest5/nandcell/schematic/sch.oa-
+ create mode 100644 hspice/fortest5/nandcell/schematic/thumbnail_128x128.png
+ create mode 100644 hspice/fortest5/nandcell/symbol/master.tag
+ create mode 100644 hspice/fortest5/nandcell/symbol/symbol.oa
+ create mode 100644 hspice/fortest5/nandcell/symbol/thumbnail_128x128.png
+ create mode 100644 hspice/fortest5/tech.db
+ create mode 100644 hspice/jaemin/.oalib
+ create mode 100644 hspice/jaemin/cdsinfo.tag
+ create mode 100644 hspice/jaemin/data.dm
+ create mode 100644 hspice/jaemin/inverter/schematic/data.dm
+ create mode 100644 hspice/jaemin/inverter/schematic/master.tag
+ create mode 100644 hspice/jaemin/inverter/schematic/sch.oa
+ create mode 100644 hspice/jaemin/inverter/schematic/sch.oa-
+ create mode 100644 hspice/jaemin/inverter/schematic/thumbnail_128x128.png
+ create mode 100644 hspice/jaemin/nandcell/data.dm
+ create mode 100644 hspice/jaemin/nandcell/schematic/data.dm
+ create mode 100644 hspice/jaemin/nandcell/schematic/master.tag
+ create mode 100644 hspice/jaemin/nandcell/schematic/sch.oa
+ create mode 100644 hspice/jaemin/nandcell/schematic/sch.oa-
+ create mode 100644 hspice/jaemin/nandcell/schematic/thumbnail_128x128.png
+ create mode 100644 hspice/jaemin/nandcell/symbol/master.tag
+ create mode 100644 hspice/jaemin/nandcell/symbol/symbol.oa
+ create mode 100644 hspice/jaemin/nandcell/symbol/thumbnail_128x128.png
+ create mode 100644 hspice/jaemin/tech.db
+ create mode 100755 hspice/lab.tar
+ create mode 100644 hspice/lab/1_RTL/inv.v
+ create mode 100644 hspice/lab/1_RTL/mult_top.v
+ create mode 100644 hspice/lab/2_RTL_SIM/.simvision/dbrowser-bookmarks
+ create mode 100644 hspice/lab/2_RTL_SIM/.simvision/schematic-bookmarks
+ create mode 100644 hspice/lab/2_RTL_SIM/.simvision/source-bookmarks
+ create mode 100644 hspice/lab/2_RTL_SIM/inv_tb.v
+ create mode 100644 hspice/lab/2_RTL_SIM/nc_init.cmd
+ create mode 100644 hspice/lab/2_RTL_SIM/scope.log
+ create mode 100644 hspice/lab/2_RTL_SIM/wave.shm/wave.dsn
+ create mode 100644 hspice/lab/2_RTL_SIM/wave.shm/wave.trn
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/.history.lock
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/history
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/.ncv.lock
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/.timestamp.ts
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/.xmlib.lock
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/.xmrun.lock
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/OVMHOME
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/UVMHOME
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/bind.lst.lnx8664
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/cds.lib
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/cdsrun.lib
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/files.ts
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/hdl.postech.ac.kr_141957_cdsrun.lib
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/hdl.postech.ac.kr_141957_hdlrun.var
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/hdl.var
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/hdlrun.var
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/.ncv.lock
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/cds.lib
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/hdl.var
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv/.cdsvmod
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv/.xm.db.066.lnx8664
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv/cdsinfo.tag
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv/pakvst.ts
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv/xm.lnx8664.066.pak
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmelab.args
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmelab.env
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmelab.hrd
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmsim.args
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmsim.env
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmsim_restart.args
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmsim_restart.env
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmverilog.args
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmvlog.args
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmvlog.env
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmvlog.files
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmvlog.hrd
+ create mode 120000 hspice/lab/2_RTL_SIM/xcelium.d/snap.d
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/worklib/.cdsvmod
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/worklib/.xm.db.066.lnx8664
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/worklib/cdsinfo.tag
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/worklib/pakvst.ts
+ create mode 100644 hspice/lab/2_RTL_SIM/xcelium.d/worklib/xm.lnx8664.066.pak
+ create mode 100644 hspice/lab/2_RTL_SIM/xmverilog.history
+ create mode 100644 hspice/lab/2_RTL_SIM/xmverilog.log
+ create mode 100644 hspice/lab/3_SYN/.template/INV.mr
+ create mode 100644 hspice/lab/3_SYN/.template/inv-verilog.pvl
+ create mode 100644 hspice/lab/3_SYN/.template/inv-verilog.syn
+ create mode 100644 hspice/lab/3_SYN/REPORT/inv_area.hier.rep
+ create mode 100644 hspice/lab/3_SYN/REPORT/inv_area.rep
+ create mode 100644 hspice/lab/3_SYN/REPORT/inv_cell.hier.rep
+ create mode 100644 hspice/lab/3_SYN/REPORT/inv_cell.rep
+ create mode 100644 hspice/lab/3_SYN/REPORT/inv_check_design.rep
+ create mode 100644 hspice/lab/3_SYN/REPORT/inv_check_timing.rep
+ create mode 100644 hspice/lab/3_SYN/REPORT/inv_design.rep
+ create mode 100644 hspice/lab/3_SYN/REPORT/inv_power.rep
+ create mode 100644 hspice/lab/3_SYN/REPORT/inv_timing.rep
+ create mode 100644 hspice/lab/3_SYN/SYN_OUT/inv_syn.sdc
+ create mode 100644 hspice/lab/3_SYN/SYN_OUT/inv_syn.sdf
+ create mode 100644 hspice/lab/3_SYN/SYN_OUT/inv_syn.v
+ create mode 100644 hspice/lab/3_SYN/alib-52/m18gm180d_typ.db.alib
+ create mode 100644 hspice/lab/3_SYN/command.log
+ create mode 100644 hspice/lab/3_SYN/default.svf
+ create mode 100644 hspice/lab/3_SYN/inv.sdc
+ create mode 100644 hspice/lab/3_SYN/run_dc.tcl
+ create mode 100644 hspice/lab/4_GATE_SIM/.simvision/146703_shbaek_hdl.postech.ac.kr_autosave.tcl.svcf
+ create mode 100644 hspice/lab/4_GATE_SIM/.simvision/dbrowser-bookmarks
+ create mode 100644 hspice/lab/4_GATE_SIM/.simvision/schematic-bookmarks
+ create mode 100644 hspice/lab/4_GATE_SIM/.simvision/source-bookmarks
+ create mode 100644 hspice/lab/4_GATE_SIM/inv.dsn
+ create mode 100644 hspice/lab/4_GATE_SIM/inv.trn
+ create mode 100644 hspice/lab/4_GATE_SIM/inv_tb.v
+ create mode 100644 hspice/lab/4_GATE_SIM/nc_init.cmd
+ create mode 100644 hspice/lab/4_GATE_SIM/scope.log
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/.history.lock
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/history
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/.ncv.lock
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/.timestamp.ts
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/.xmlib.lock
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/.xmrun.lock
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/OVMHOME
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/UVMHOME
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/bind.lst.lnx8664
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/cds.lib
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/cdsrun.lib
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/files.ts
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/hdl.postech.ac.kr_146518_cdsrun.lib
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/hdl.postech.ac.kr_146518_hdlrun.var
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/hdl.var
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/hdlrun.var
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/.ncv.lock
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/cds.lib
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/hdl.var
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv_syn/.cdsvmod
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv_syn/.xm.db.066.lnx8664
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv_syn/cdsinfo.tag
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv_syn/pakvst.ts
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv_syn/xm.lnx8664.066.pak
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/m18gm180d/.cdsvmod
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/m18gm180d/.xm.db.066.lnx8664
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/m18gm180d/cdsinfo.tag
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/m18gm180d/pakvst.ts
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/m18gm180d/xm.lnx8664.066.pak
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmelab.args
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmelab.env
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmelab.hrd
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmsim.args
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmsim.env
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmsim_restart.args
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmsim_restart.env
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmverilog.args
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmvlog.args
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmvlog.env
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmvlog.files
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmvlog.hrd
+ create mode 120000 hspice/lab/4_GATE_SIM/xcelium.d/snap.d
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/worklib/.cdsvmod
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/worklib/.xm.db.066.lnx8664
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/worklib/cdsinfo.tag
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/worklib/pakvst.ts
+ create mode 100644 hspice/lab/4_GATE_SIM/xcelium.d/worklib/xm.lnx8664.066.pak
+ create mode 100644 hspice/lab/4_GATE_SIM/xmverilog.history
+ create mode 100644 hspice/lab/4_GATE_SIM/xmverilog.log
+ create mode 100644 hspice/libManager.log
+ create mode 100644 hspice/scope.log
+ create mode 100644 hspice/scope.log.bak
+ create mode 100755 hspice/tool2.env
+ create mode 100755 lab.tar
+ create mode 100644 lab/1_RTL/inv.v
+ create mode 100644 lab/1_RTL/mult_top.v
+ create mode 100644 lab/2_RTL_SIM/.simvision/dbrowser-bookmarks
+ create mode 100644 lab/2_RTL_SIM/.simvision/schematic-bookmarks
+ create mode 100644 lab/2_RTL_SIM/.simvision/source-bookmarks
+ create mode 100644 lab/2_RTL_SIM/inv_tb.v
+ create mode 100644 lab/2_RTL_SIM/nc_init.cmd
+ create mode 100644 lab/2_RTL_SIM/scope.log
+ create mode 100644 lab/2_RTL_SIM/wave.shm/wave.dsn
+ create mode 100644 lab/2_RTL_SIM/wave.shm/wave.trn
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/.history.lock
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/history
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/.ncv.lock
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/.timestamp.ts
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/.xmlib.lock
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/.xmrun.lock
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/OVMHOME
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/UVMHOME
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/bind.lst.lnx8664
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/cds.lib
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/cdsrun.lib
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/files.ts
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/hdl.postech.ac.kr_141957_cdsrun.lib
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/hdl.postech.ac.kr_141957_hdlrun.var
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/hdl.var
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/hdlrun.var
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/.ncv.lock
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/cds.lib
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/hdl.var
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv/.cdsvmod
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv/.xm.db.066.lnx8664
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv/cdsinfo.tag
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv/pakvst.ts
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv/xm.lnx8664.066.pak
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmelab.args
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmelab.env
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmelab.hrd
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmsim.args
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmsim.env
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmsim_restart.args
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmsim_restart.env
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmverilog.args
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmvlog.args
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmvlog.env
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmvlog.files
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/run.lnx8664.18.09.d/xmvlog.hrd
+ create mode 120000 lab/2_RTL_SIM/xcelium.d/snap.d
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/worklib/.cdsvmod
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/worklib/.xm.db.066.lnx8664
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/worklib/cdsinfo.tag
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/worklib/pakvst.ts
+ create mode 100644 lab/2_RTL_SIM/xcelium.d/worklib/xm.lnx8664.066.pak
+ create mode 100644 lab/2_RTL_SIM/xmverilog.history
+ create mode 100644 lab/2_RTL_SIM/xmverilog.log
+ create mode 100644 lab/3_SYN/.template/INV.mr
+ create mode 100644 lab/3_SYN/.template/inv-verilog.pvl
+ create mode 100644 lab/3_SYN/.template/inv-verilog.syn
+ create mode 100644 lab/3_SYN/REPORT/inv_area.hier.rep
+ create mode 100644 lab/3_SYN/REPORT/inv_area.rep
+ create mode 100644 lab/3_SYN/REPORT/inv_cell.hier.rep
+ create mode 100644 lab/3_SYN/REPORT/inv_cell.rep
+ create mode 100644 lab/3_SYN/REPORT/inv_check_design.rep
+ create mode 100644 lab/3_SYN/REPORT/inv_check_timing.rep
+ create mode 100644 lab/3_SYN/REPORT/inv_design.rep
+ create mode 100644 lab/3_SYN/REPORT/inv_power.rep
+ create mode 100644 lab/3_SYN/REPORT/inv_timing.rep
+ create mode 100644 lab/3_SYN/SYN_OUT/inv_syn.sdc
+ create mode 100644 lab/3_SYN/SYN_OUT/inv_syn.sdf
+ create mode 100644 lab/3_SYN/SYN_OUT/inv_syn.v
+ create mode 100644 lab/3_SYN/alib-52/m18gm180d_typ.db.alib
+ create mode 100644 lab/3_SYN/command.log
+ create mode 100644 lab/3_SYN/default.svf
+ create mode 100644 lab/3_SYN/inv.sdc
+ create mode 100644 lab/3_SYN/run_dc.tcl
+ create mode 100644 lab/4_GATE_SIM/.simvision/146703_shbaek_hdl.postech.ac.kr_autosave.tcl.svcf
+ create mode 100644 lab/4_GATE_SIM/.simvision/dbrowser-bookmarks
+ create mode 100644 lab/4_GATE_SIM/.simvision/schematic-bookmarks
+ create mode 100644 lab/4_GATE_SIM/.simvision/source-bookmarks
+ create mode 100644 lab/4_GATE_SIM/inv.dsn
+ create mode 100644 lab/4_GATE_SIM/inv.trn
+ create mode 100644 lab/4_GATE_SIM/inv_tb.v
+ create mode 100644 lab/4_GATE_SIM/nc_init.cmd
+ create mode 100644 lab/4_GATE_SIM/scope.log
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/.history.lock
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/history
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/.ncv.lock
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/.timestamp.ts
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/.xmlib.lock
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/.xmrun.lock
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/OVMHOME
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/UVMHOME
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/bind.lst.lnx8664
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/cds.lib
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/cdsrun.lib
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/files.ts
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/hdl.postech.ac.kr_146518_cdsrun.lib
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/hdl.postech.ac.kr_146518_hdlrun.var
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/hdl.var
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/hdlrun.var
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/.ncv.lock
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/cds.lib
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/hdl.var
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv_syn/.cdsvmod
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv_syn/.xm.db.066.lnx8664
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv_syn/cdsinfo.tag
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv_syn/pakvst.ts
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/inv_syn/xm.lnx8664.066.pak
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/m18gm180d/.cdsvmod
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/m18gm180d/.xm.db.066.lnx8664
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/m18gm180d/cdsinfo.tag
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/m18gm180d/pakvst.ts
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xllibs/m18gm180d/xm.lnx8664.066.pak
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmelab.args
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmelab.env
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmelab.hrd
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmsim.args
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmsim.env
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmsim_restart.args
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmsim_restart.env
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmverilog.args
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmvlog.args
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmvlog.env
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmvlog.files
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/run.lnx8664.18.09.d/xmvlog.hrd
+ create mode 120000 lab/4_GATE_SIM/xcelium.d/snap.d
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/worklib/.cdsvmod
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/worklib/.xm.db.066.lnx8664
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/worklib/cdsinfo.tag
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/worklib/pakvst.ts
+ create mode 100644 lab/4_GATE_SIM/xcelium.d/worklib/xm.lnx8664.066.pak
+ create mode 100644 lab/4_GATE_SIM/xmverilog.history
+ create mode 100644 lab/4_GATE_SIM/xmverilog.log
+ create mode 160000 online-cv
+ create mode 100644 panic.log.rtl.postech.ac.kr.133355
+ create mode 100644 panic.log.rtl.postech.ac.kr.148245
+ create mode 100644 panic.log.rtl.postech.ac.kr.262534
+ create mode 100644 panic.log.rtl.postech.ac.kr.262935
+ create mode 100644 panic.log.rtl.postech.ac.kr.266672
+ create mode 100644 panic.log.rtl.postech.ac.kr.267372
+ create mode 100644 panic.log.rtl.postech.ac.kr.273843
+ create mode 160000 pygcn
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/.__master.optionFile
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/.__master.termorder
+ create mode 100755 simulation/inverter/spectre/schematic/netlist/.control
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/.controlStatements
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/.definitionFiles
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/.designVariables
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/.includedModels
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/.inverter.parameters
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/.modelFiles
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/.specialFilesInclude
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/.stimulusFile
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/amap/MPDK_HL18G_nch_tn_spectre.inst
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/amap/MPDK_HL18G_pch_tn_spectre.inst
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/amap/__dspf_information__.
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/amap/__multiplefiles_amap_format__
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/amap/__new_amap_format__
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/amap/__nmp_amap_format__
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/amap/__simulator_information__
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/amap/analogLib_cap_spectre.inst
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/amap/analogLib_vdc_spectre.inst
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/amap/analogLib_vpulse_spectre.inst
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/amap/inverter.inst
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/amap/inverter.net
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/amap/inverter.port
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/amap/top_level_map.inst
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/amap/top_level_map.net
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/amap/top_level_map.port
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/artSimEnvLog
+ create mode 100755 simulation/inverter/spectre/schematic/netlist/control
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/designInfo
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/ihnl/blockdirmap
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/ihnl/cds0/control
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/ihnl/cds0/netlist
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/ihnl/control
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/ihnl/globalmap
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/input.scllog
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/input.scs
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/map/current
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/netlist
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/netlistFooter
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/netlistHeader
+ create mode 100755 simulation/inverter/spectre/schematic/netlist/runSimulation
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/si.env
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/si.foregnd.log
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/spectre.dc
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/spectre.fc
+ create mode 100644 simulation/inverter/spectre/schematic/netlist/spectre.ic
+ create mode 100755 simulation/inverter/spectre/schematic/netlist/spectre.inp
+ create mode 100755 simulation/inverter/spectre/schematic/netlist/spectre.sim
+ create mode 100644 simulation/inverter/spectre/schematic/psf/.adeStatus
+ create mode 100644 simulation/inverter/spectre/schematic/psf/.simDone
+ create mode 100644 simulation/inverter/spectre/schematic/psf/.trynfssync
+ create mode 100644 simulation/inverter/spectre/schematic/psf/artistLogFile
+ create mode 100644 simulation/inverter/spectre/schematic/psf/dcOp.dc
+ create mode 100644 simulation/inverter/spectre/schematic/psf/dcOpInfo.info
+ create mode 100644 simulation/inverter/spectre/schematic/psf/designParamVals.info
+ create mode 100644 simulation/inverter/spectre/schematic/psf/element.info
+ create mode 100644 simulation/inverter/spectre/schematic/psf/finalTimeOP.info
+ create mode 100644 simulation/inverter/spectre/schematic/psf/logFile
+ create mode 100644 simulation/inverter/spectre/schematic/psf/modelParameter.info
+ create mode 100644 simulation/inverter/spectre/schematic/psf/outputParameter.info
+ create mode 100644 simulation/inverter/spectre/schematic/psf/primitives.info.primitives
+ create mode 100644 simulation/inverter/spectre/schematic/psf/runObjFile
+ create mode 100644 simulation/inverter/spectre/schematic/psf/simRunData
+ create mode 100644 simulation/inverter/spectre/schematic/psf/spectre.out
+ create mode 100644 simulation/inverter/spectre/schematic/psf/subckts.info.subckts
+ create mode 100644 simulation/inverter/spectre/schematic/psf/tran.tran.tran
+ create mode 100644 simulation/inverter/spectre/schematic/psf/tran.tran.tran.0.sig.tmp
+ create mode 100644 simulation/inverter/spectre/schematic/psf/tran.tran.tran.1.sig.tmp
+ create mode 100644 simulation/inverter/spectre/schematic/psf/tran.tran.tran.dat
+ create mode 100644 simulation/inverter/spectre/schematic/psf/tran.tran.tran.sig
+ create mode 120000 simulation/inverter/spectre/schematic/psf/tran.tran.tran.sig.tmp
+ create mode 100644 simulation/inverter/spectre/schematic/psf/variables_file
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/.__master.optionFile
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/.__master.termorder
+ create mode 100755 simulation/nandcell/spectre/schematic/netlist/.control
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/.controlStatements
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/.definitionFiles
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/.designVariables
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/.includedModels
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/.modelFiles
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/.nandcell.parameters
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/.specialFilesInclude
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/.stimulusFile
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/amap/MPDK_HL18G_nch_tn_spectre.inst
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/amap/MPDK_HL18G_pch_tn_spectre.inst
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/amap/__dspf_information__.
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/amap/__multiplefiles_amap_format__
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/amap/__new_amap_format__
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/amap/__nmp_amap_format__
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/amap/__simulator_information__
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/amap/analogLib_cap_spectre.inst
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/amap/analogLib_vdc_spectre.inst
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/amap/analogLib_vpulse_spectre.inst
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/amap/nandcell.inst
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/amap/nandcell.net
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/amap/nandcell.port
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/amap/top_level_map.inst
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/amap/top_level_map.net
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/amap/top_level_map.port
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/artSimEnvLog
+ create mode 100755 simulation/nandcell/spectre/schematic/netlist/control
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/designInfo
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/ihnl/blockdirmap
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/ihnl/cds0/control
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/ihnl/cds0/netlist
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/ihnl/control
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/ihnl/globalmap
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/input.scllog
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/input.scs
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/map/current
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/netlist
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/netlistFooter
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/netlistHeader
+ create mode 100755 simulation/nandcell/spectre/schematic/netlist/runSimulation
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/si.env
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/si.foregnd.log
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/spectre.dc
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/spectre.fc
+ create mode 100644 simulation/nandcell/spectre/schematic/netlist/spectre.ic
+ create mode 100755 simulation/nandcell/spectre/schematic/netlist/spectre.inp
+ create mode 100755 simulation/nandcell/spectre/schematic/netlist/spectre.sim
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/.adeStatus
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/.simDone
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/.trynfssync
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/artistLogFile
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/dcOp.dc
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/dcOpInfo.info
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/designParamVals.info
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/element.info
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/finalTimeOP.info
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/logFile
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/modelParameter.info
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/outputParameter.info
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/primitives.info.primitives
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/runObjFile
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/simRunData
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/spectre.out
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/subckts.info.subckts
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/tran.tran.tran
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/tran.tran.tran.0.sig.tmp
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/tran.tran.tran.1.sig.tmp
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/tran.tran.tran.dat
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/tran.tran.tran.sig
+ create mode 120000 simulation/nandcell/spectre/schematic/psf/tran.tran.tran.sig.tmp
+ create mode 100644 simulation/nandcell/spectre/schematic/psf/variables_file
+[rtl : jmseo] git init
+Reinitialized existing Git repository in /class/intern/jmseo/.git/
+[rtl : jmseo] git add .
+[rtl : jmseo] git commit -m "init git"
+# On branch master
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#   (commit or discard the untracked or modified content in submodules)
+#
+#	modified:   online-cv (modified content)
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+[rtl : jmseo] git push -u origin master
+To https://jaemin0502@github.com/jaemin0502/online-cv.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://jaemin0502@github.com/jaemin0502/online-cv.git'
+To prevent you from losing history, non-fast-forward updates were rejected
+Merge the remote changes before pushing again.  See the 'Note about
+fast-forwards' section of 'git push --help' for details.
+[rtl : jmseo] git pull
+warning: no common commits
+remote: Enumerating objects: 2070, done.
+remote: Counting objects: 100% (8/8), done.
+remote: Compressing objects: 100% (7/7), done.
+remote: Total 2070 (delta 0), reused 3 (delta 0), pack-reused 2062
+Receiving objects: 100% (2070/2070), 4.08 MiB | 3.94 MiB/s, done.
+Resolving deltas: 100% (458/458), done.
+From https://github.com/jaemin0502/online-cv
+ * [new branch]      gh-pages   -> origin/gh-pages
+ * [new branch]      master     -> origin/master
+You asked me to pull without telling me which branch you
+want to merge with, and 'branch.master.merge' in
+your configuration file does not tell me, either. Please
+specify which branch you want to use on the command line and
+try again (e.g. 'git pull <repository> <refspec>').
+See git-pull(1) for details.
+
+If you often merge with the same branch, you may want to
+use something like the following in your configuration file:
+
+    [branch "master"]
+    remote = <nickname>
+    merge = <remote-ref>
+
+    [remote "<nickname>"]
+    url = <url>
+    fetch = <refspec>
+
+See git-config(1) for details.
+[rtl : jmseo] git push -u origin master
+To https://jaemin0502@github.com/jaemin0502/online-cv.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://jaemin0502@github.com/jaemin0502/online-cv.git'
+To prevent you from losing history, non-fast-forward updates were rejected
+Merge the remote changes before pushing again.  See the 'Note about
+fast-forwards' section of 'git push --help' for details.
+[rtl : jmseo] git status
+# On branch master
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#   (commit or discard the untracked or modified content in submodules)
+#
+#	modified:   online-cv (modified content)
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+[rtl : jmseo] git push -u origin master
+To https://jaemin0502@github.com/jaemin0502/online-cv.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://jaemin0502@github.com/jaemin0502/online-cv.git'
+To prevent you from losing history, non-fast-forward updates were rejected
+Merge the remote changes before pushing again.  See the 'Note about
+fast-forwards' section of 'git push --help' for details.
+[rtl : jmseo] clear
+
+[rtl : jmseo] ls
+CDS.log                  cds.lib                             panic.log.rtl.postech.ac.kr.262935
+CDS.log.cdslck           hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_Innovus    lab                                 panic.log.rtl.postech.ac.kr.267372
+CSDL_tutorial_PrimeTime  lab.tar                             panic.log.rtl.postech.ac.kr.273843
+ICCAD2021                online-cv                           pygcn
+Innovus.tar              panic.log.rtl.postech.ac.kr.133355  simulation
+Primetime                panic.log.rtl.postech.ac.kr.148245
+Primetime.tar            panic.log.rtl.postech.ac.kr.262534
+[rtl : jmseo] cd online-cv
+[rtl : online-cv] ls
+README.md  _config.yml  _data  _includes  _layouts  _sass  assets  favicon.ico  index.html
+[rtl : online-cv] cd _data
+[rtl : _data] ls
+data.yml
+[rtl : _data] vim data.yml
+[rtl : _data] git remote
+origin
+[rtl : _data] git remote -v
+origin	git@github.com:jaemin0502/online-cv.git (fetch)
+origin	git@github.com:jaemin0502/online-cv.git (push)
+[rtl : _data] git push 
+Everything up-to-date
+[rtl : _data] git push origin master
+Everything up-to-date
+[rtl : _data] git remote -v
+origin	git@github.com:jaemin0502/online-cv.git (fetch)
+origin	git@github.com:jaemin0502/online-cv.git (push)
+[rtl : _data] git pull
+Already up-to-date.
+[rtl : _data] git push origin master
+Everything up-to-date
+[rtl : _data] ls
+data.yml
+[rtl : _data] cd ..
+[rtl : online-cv] ls
+README.md  _config.yml  _data  _includes  _layouts  _sass  assets  favicon.ico  index.html
+[rtl : online-cv] cd ..
+[rtl : jmseo] ls
+CDS.log                  cds.lib                             panic.log.rtl.postech.ac.kr.262935
+CDS.log.cdslck           hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_Innovus    lab                                 panic.log.rtl.postech.ac.kr.267372
+CSDL_tutorial_PrimeTime  lab.tar                             panic.log.rtl.postech.ac.kr.273843
+ICCAD2021                online-cv                           pygcn
+Innovus.tar              panic.log.rtl.postech.ac.kr.133355  simulation
+Primetime                panic.log.rtl.postech.ac.kr.148245
+Primetime.tar            panic.log.rtl.postech.ac.kr.262534
+[rtl : jmseo] git remote -v
+origin	https://jaemin0502@github.com/jaemin0502/online-cv.git (fetch)
+origin	https://jaemin0502@github.com/jaemin0502/online-cv.git (push)
+[rtl : jmseo] git push origin master
+To https://jaemin0502@github.com/jaemin0502/online-cv.git
+ ! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://jaemin0502@github.com/jaemin0502/online-cv.git'
+To prevent you from losing history, non-fast-forward updates were rejected
+Merge the remote changes before pushing again.  See the 'Note about
+fast-forwards' section of 'git push --help' for details.
+[rtl : jmseo] git checkout master
+M	.viminfo
+M	online-cv
+Already on 'master'
+[rtl : jmseo] ls
+CDS.log                  cds.lib                             panic.log.rtl.postech.ac.kr.262935
+CDS.log.cdslck           hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_Innovus    lab                                 panic.log.rtl.postech.ac.kr.267372
+CSDL_tutorial_PrimeTime  lab.tar                             panic.log.rtl.postech.ac.kr.273843
+ICCAD2021                online-cv                           pygcn
+Innovus.tar              panic.log.rtl.postech.ac.kr.133355  simulation
+Primetime                panic.log.rtl.postech.ac.kr.148245
+Primetime.tar            panic.log.rtl.postech.ac.kr.262534
+[rtl : jmseo] git push origin +master
+Counting objects: 586, done.
+Delta compression using up to 56 threads.
+Compressing objects: 100% (518/518), done.
+Writing objects: 100% (586/586), 22.15 MiB | 1.86 MiB/s, done.
+Total 586 (delta 156), reused 0 (delta 0)
+remote: Resolving deltas: 100% (156/156), done.
+To https://jaemin0502@github.com/jaemin0502/online-cv.git
+ + 506ed9f...d35aef2 master -> master (forced update)
+[rtl : jmseo] cd online-cv
+[rtl : online-cv] ls
+README.md  _config.yml  _data  _includes  _layouts  _sass  assets  favicon.ico  index.html
+[rtl : online-cv] git remote -v
+origin	git@github.com:jaemin0502/online-cv.git (fetch)
+origin	git@github.com:jaemin0502/online-cv.git (push)
+[rtl : online-cv] git push origin +master
+ERROR: We're doing an SSH key audit.
+Reason: unverified automatically (private key found in a public repository)
+Please visit https://github.com/settings/keys/54228277
+to approve this key so we know it's safe.
+
+Fingerprint:
+SHA256:FzWAuqZYaJZZZ4nbgblRt6+mBX1hq8FGAl75y1hi1aU
+
+fatal: The remote end hung up unexpectedly
+[rtl : online-cv] git push origin +master
+Total 0 (delta 0), reused 0 (delta 0)
+To git@github.com:jaemin0502/online-cv.git
+ + d35aef2...506ed9f master -> master (forced update)
+[rtl : online-cv] ls
+README.md  _config.yml  _data  _includes  _layouts  _sass  assets  favicon.ico  index.html
+[rtl : online-cv] cd _data
+[rtl : _data] ls
+data.yml
+[rtl : _data] vim data.yml
+[rtl : _data] git pull
+Already up-to-date.
+[rtl : _data] vim data.yml
+[rtl : _data] git push origin master
+Everything up-to-date
+[rtl : _data] git push origin +master
+Everything up-to-date
+[rtl : _data] ls
+data.yml
+[rtl : _data] cd ..
+[rtl : online-cv] ls
+README.md  _config.yml  _data  _includes  _layouts  _sass  assets  favicon.ico  index.html
+[rtl : online-cv] git push origin master
+Everything up-to-date
+[rtl : online-cv] git push --all origin master
+error: --all can't be combined with refspecs
+usage: git push [<options>] [<repository> [<refspec>...]]
+
+    -v, --verbose         be more verbose
+    -q, --quiet           be more quiet
+    --repo <repository>   repository
+    --all                 push all refs
+    --mirror              mirror all refs
+    --delete              delete refs
+    --tags                push tags (can't be used with --all or --mirror)
+    -n, --dry-run         dry run
+    --porcelain           machine-readable output
+    -f, --force           force updates
+    --thin                use thin pack
+    --receive-pack <receive-pack>
+                          receive pack program
+    --exec <receive-pack>
+                          receive pack program
+    -u, --set-upstream    set upstream for git pull/status
+    --progress            force progress reporting
+
+[rtl : online-cv] git push --all origin 
+Everything up-to-date
+[rtl : online-cv] git remote set-url origin git@github.com:jaemin0502/online-cv.git
+[rtl : online-cv] git pull
+Already up-to-date.
+[rtl : online-cv] git push
+Everything up-to-date
+[rtl : online-cv] git push origin master
+Everything up-to-date
+[rtl : online-cv] git push origin +master
+Everything up-to-date
+[rtl : online-cv] git fetch --all
+Fetching origin
+[rtl : online-cv] ls
+README.md  _config.yml  _data  _includes  _layouts  _sass  assets  favicon.ico  index.html
+[rtl : online-cv] vim _data
+[rtl : online-cv] cd _data
+[rtl : _data] ls
+data.yml
+[rtl : _data] vim data.yml
+[rtl : _data] cd ..
+[rtl : online-cv] cd ..
+[rtl : jmseo] ls
+CDS.log                  cds.lib                             panic.log.rtl.postech.ac.kr.262935
+CDS.log.cdslck           hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_Innovus    lab                                 panic.log.rtl.postech.ac.kr.267372
+CSDL_tutorial_PrimeTime  lab.tar                             panic.log.rtl.postech.ac.kr.273843
+ICCAD2021                online-cv                           pygcn
+Innovus.tar              panic.log.rtl.postech.ac.kr.133355  simulation
+Primetime                panic.log.rtl.postech.ac.kr.148245
+Primetime.tar            panic.log.rtl.postech.ac.kr.262534
+[rtl : jmseo] cp online-cv/_data/data.yml
+cp: missing destination file operand after `online-cv/_data/data.yml'
+더 많은 정보를 보려면 `cp --help' 하십시오.
+[rtl : jmseo] cp ~/online-cv/_data/data.yml
+cp: missing destination file operand after `/class/intern/jmseo/online-cv/_data/data.yml'
+더 많은 정보를 보려면 `cp --help' 하십시오.
+[rtl : jmseo] cp /class/intern/jmseo/online-cv/_data/data.yml
+cp: missing destination file operand after `/class/intern/jmseo/online-cv/_data/data.yml'
+더 많은 정보를 보려면 `cp --help' 하십시오.
+[rtl : jmseo] pwd
+/class/intern/jmseo
+[rtl : jmseo] ls
+CDS.log                  cds.lib                             panic.log.rtl.postech.ac.kr.262935
+CDS.log.cdslck           hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_Innovus    lab                                 panic.log.rtl.postech.ac.kr.267372
+CSDL_tutorial_PrimeTime  lab.tar                             panic.log.rtl.postech.ac.kr.273843
+ICCAD2021                online-cv                           pygcn
+Innovus.tar              panic.log.rtl.postech.ac.kr.133355  simulation
+Primetime                panic.log.rtl.postech.ac.kr.148245
+Primetime.tar            panic.log.rtl.postech.ac.kr.262534
+[rtl : jmseo] cd online-cv
+[rtl : online-cv] ls
+README.md  _config.yml  _data  _includes  _layouts  _sass  assets  favicon.ico  index.html
+[rtl : online-cv] cd _data
+[rtl : _data] ls
+data.yml
+[rtl : _data] cp data.yml /class/intern/jmseo
+[rtl : _data] ls
+data.yml
+[rtl : _data] cd ..
+[rtl : online-cv] cd ..
+[rtl : jmseo] ls
+CDS.log                  cds.lib                             panic.log.rtl.postech.ac.kr.262534
+CDS.log.cdslck           data.yml                            panic.log.rtl.postech.ac.kr.262935
+CSDL_tutorial_Innovus    hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_PrimeTime  lab                                 panic.log.rtl.postech.ac.kr.267372
+ICCAD2021                lab.tar                             panic.log.rtl.postech.ac.kr.273843
+Innovus.tar              online-cv                           pygcn
+Primetime                panic.log.rtl.postech.ac.kr.133355  simulation
+Primetime.tar            panic.log.rtl.postech.ac.kr.148245
+[rtl : jmseo] vim data.yml
+[rtl : jmseo] ls
+CDS.log                  cds.lib                             panic.log.rtl.postech.ac.kr.262534
+CDS.log.cdslck           data.yml                            panic.log.rtl.postech.ac.kr.262935
+CSDL_tutorial_Innovus    hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_PrimeTime  lab                                 panic.log.rtl.postech.ac.kr.267372
+ICCAD2021                lab.tar                             panic.log.rtl.postech.ac.kr.273843
+Innovus.tar              online-cv                           pygcn
+Primetime                panic.log.rtl.postech.ac.kr.133355  simulation
+Primetime.tar            panic.log.rtl.postech.ac.kr.148245
+[rtl : jmseo] cd online-cv
+[rtl : online-cv] ls
+README.md  _config.yml  _data  _includes  _layouts  _sass  assets  favicon.ico  index.html
+[rtl : online-cv] git fetch --all
+Fetching origin
+[rtl : online-cv] git remote -v
+origin	git@github.com:jaemin0502/online-cv.git (fetch)
+origin	git@github.com:jaemin0502/online-cv.git (push)
+[rtl : online-cv] git reset --hard origin/master
+HEAD is now at 506ed9f add pdf file icon to sidebar contact section
+[rtl : online-cv] ls
+README.md  _config.yml  _data  _includes  _layouts  _sass  assets  favicon.ico  index.html
+[rtl : online-cv] cd _data/data.yml
+_data/data.yml: 디렉터리가 아닙니다.
+[rtl : online-cv] cd _data
+[rtl : _data] ls
+data.yml
+[rtl : _data] vim data.yml
+[rtl : _data] ls
+data.yml
+[rtl : _data] cd ..
+[rtl : online-cv] cd ..
+[rtl : jmseo] ls
+CDS.log                  cds.lib                             panic.log.rtl.postech.ac.kr.262534
+CDS.log.cdslck           data.yml                            panic.log.rtl.postech.ac.kr.262935
+CSDL_tutorial_Innovus    hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_PrimeTime  lab                                 panic.log.rtl.postech.ac.kr.267372
+ICCAD2021                lab.tar                             panic.log.rtl.postech.ac.kr.273843
+Innovus.tar              online-cv                           pygcn
+Primetime                panic.log.rtl.postech.ac.kr.133355  simulation
+Primetime.tar            panic.log.rtl.postech.ac.kr.148245
+[rtl : jmseo] cp data.yml ./online-cv/_data
+[rtl : jmseo] cd online-cv
+[rtl : online-cv] ls
+README.md  _config.yml  _data  _includes  _layouts  _sass  assets  favicon.ico  index.html
+[rtl : online-cv] cd _data
+[rtl : _data] ls
+data.yml
+[rtl : _data] vim data.yml
+[rtl : _data] cd ..
+[rtl : online-cv] ls
+README.md  _config.yml  _data  _includes  _layouts  _sass  assets  favicon.ico  index.html
+[rtl : online-cv] git remote -v
+origin	git@github.com:jaemin0502/online-cv.git (fetch)
+origin	git@github.com:jaemin0502/online-cv.git (push)
+[rtl : online-cv] git push origin master
+Everything up-to-date
+[rtl : online-cv] cd _data
+[rtl : _data] ls
+data.yml
+[rtl : _data] vim data.yml
+[rtl : _data] cd ..
+[rtl : online-cv] cd ..
+[rtl : jmseo] ls
+CDS.log                  cds.lib                             panic.log.rtl.postech.ac.kr.262534
+CDS.log.cdslck           data.yml                            panic.log.rtl.postech.ac.kr.262935
+CSDL_tutorial_Innovus    hspice                              panic.log.rtl.postech.ac.kr.266672
+CSDL_tutorial_PrimeTime  lab                                 panic.log.rtl.postech.ac.kr.267372
+ICCAD2021                lab.tar                             panic.log.rtl.postech.ac.kr.273843
+Innovus.tar              online-cv                           pygcn
+Primetime                panic.log.rtl.postech.ac.kr.133355  simulation
+Primetime.tar            panic.log.rtl.postech.ac.kr.148245
+[rtl : jmseo] cd online-cv
+[rtl : online-cv] ls
+README.md  _config.yml  _data  _includes  _layouts  _sass  assets  favicon.ico  index.html
+[rtl : online-cv] git push origin gh-pages
+error: src refspec gh-pages does not match any.
+error: failed to push some refs to 'git@github.com:jaemin0502/online-cv.git'
+[rtl : online-cv] git remote -v
+origin	git@github.com:jaemin0502/online-cv.git (fetch)
+origin	git@github.com:jaemin0502/online-cv.git (push)
+[rtl : online-cv] ls
+README.md  _config.yml  _data  _includes  _layouts  _sass  assets  favicon.ico  index.html
+[rtl : online-cv] git push origin +master
+Everything up-to-date
+[rtl : online-cv] git push origin +gh-pages
+error: src refspec gh-pages does not match any.
+error: failed to push some refs to 'git@github.com:jaemin0502/online-cv.git'
+[rtl : online-cv] ls
+README.md  _config.yml  _data  _includes  _layouts  _sass  assets  favicon.ico  index.html
+[rtl : online-cv] cd _data
+[rtl : _data] ls
+data.yml
+[rtl : _data] vim data.yml
+[rtl : _data] vim data.yml
+
 #
 # Be aware that even a small syntax error here can lead to failures in output.
 #
@@ -7,186 +3643,152 @@ sidebar:
     education: True # set to False if you want education in main section instead of in sidebar
 
     # Profile information
-    name: Alan Doe
-    tagline: Full Stack Developer
+    name: Jaemin Seo
+    tagline: M.S. -Ph.D. student of CSDL
     avatar: profile.png  #place a 100x100 picture inside /assets/images/ folder and provide the name of the file below
 
     # Sidebar links
-    email: hello@webjeda.com
-    phone: 012 345 6789
-    website: blog.webjeda.com #do not add http://
-    linkedin: alandoe
-    xing: alandoe
-    github: sharu725
+    email: seojm@postech.ac.kr
+    phone:
+    website:  #do not add http://
+    linkedin:
+    xing:
+    github: jaemin0502
     telegram: # add your nickname without '@' sign
     gitlab:
     bitbucket:
-    twitter: '@webjeda'
+    twitter:
     stack-overflow: # Number/Username, e.g. 123456/alandoe
     codewars:
     goodreads: # Number-Username, e.g. 123456-alandoe
-    pdf: http://www.africau.edu/images/default/sample.pdf
+    pdf:
 
     languages:
-      - idiom: English
+      - idiom: Korean
         level: Native
 
-      - idiom: French
+      - idiom: English
         level: Professional
 
-      - idiom: Spanish
-        level: Professional
+      - idiom:
+        level:
 
     interests:
-      - item: Climbing
+      - item: VLSI CAD
         link:
 
-      - item: Snowboarding
+      - item: Physical Design Optimization
         link:
 
-      - item: Cooking
+      - item:
         link:
 
 career-profile:
     title: Career Profile
     summary: |
-      Summarise your career here lorem ipsum dolor sit amet, consectetuer
-      adipiscing elit. You can [download this free resume/CV template here]().
-      Aenean commodo ligula eget dolor aenean massa. Cum sociis natoque
-      penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-      Donec quam felis, ultricies nec, pellentesque eu.
-      Second paragraph if required.
+      Jaemin Seo is currently M.S. -Ph.D student in the Department of Electrical
+      Engineering in Pohang University of Science and Technology(POSTECH), Korea.
+      He is working with Professor Seokhyeong Kang in CAD & SoC Design Lab(CSDL).
+
+      His research interest includes EDA(Electronic Design Automation) flow, ML-CAD
+      (Machine Learning Computer Aided Design), VLSI(Very-Large-Scale Integration)
+      physical design.
 education:
-    - degree: MSc in Computer Science
-      university: University of London
-      time: 2011 - 2012
+    - degree: M.S. -Ph.D in Electrical Engineering
+      university: Pohang University of Science and Technology(POSTECH)
+      time: Aug. 2021 - Present
       details: |
-        Describe your study here lorem ipsum dolor sit amet, consectetuer
-        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-        sociis natoque penatibus et magnis dis parturient montes, nascetur
-        ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-        pretium quis, sem.
-          - Bullet point
-          - Bullet point
-    - degree: BSc in Applied Mathematics
-      university: Bristol University
-      time: 2007 - 2011
+
+          - 
+          - 
+    - degree: B.S. in Electrical Engineering
+      university: Pohang University of Science and Technology(POSTECH)
+      time: Mar. 2017 - Aug. 2021
       details: |
-        Describe your study here lorem ipsum dolor sit amet, consectetuer
-        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum
-        sociis natoque penatibus et magnis dis parturient montes, nascetur
-        ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-        pretium quis, sem.
-          - Bullet point
-          - Bullet point
+
+          - 
+          - 
 experiences:
-    - role: Lead Developer
-      time: 2015 - Present
-      company: Startup Hubs, San Francisco
+    - role: Graduated Student Researcher
+      time: July 2021  - Present
+      company: CAD & SoC Design Lab(CSDL) in POSTECH, Prof, Seokhyeong Kang
       details: |
-        Describe your role here lorem ipsum dolor sit amet, consectetuer
-        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-        Cum sociis natoque penatibus et magnis dis parturient montes,
-        nascetur ridiculus mus. Donec quam felis, ultricies nec,
-        pellentesque eu, pretium quis, sem. Nulla consequat massa quis
-        enim. Donec pede justo. Sed ut perspiciatis unde omnis iste natus
-        error sit voluptatem accusantium doloremque laudantium, totam rem
-        aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
-        architecto beatae vitae dicta sunt explicabo.
-          - Bullet point
-          - Bullet point
-    - role: Senior Software Engineer
-      time: 2014 - 2015
-      company: Google, London
+
+          - 
+          - 
+    - role:
+      time:
+      company:
       details: |
-        Describe your role here lorem ipsum dolor sit amet, consectetuer
-        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-        Cum sociis natoque penatibus et magnis dis parturient montes,
-        nascetur ridiculus mus. Donec quam felis, ultricies nec,
-        pellentesque eu, pretium quis, sem.
-          - Bullet point
-          - Bullet point
-    - role: UI Developer
-      time: 2012 - 2014
-      company: Amazon, London
+
+          - 
+          - 
+    - role:
+      time:
+      company:
       details: |
-        Describe your role here lorem ipsum dolor sit amet, consectetuer
-        adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-        Cum sociis natoque penatibus et magnis dis parturient montes,
-        nascetur ridiculus mus. Donec quam felis, ultricies nec,
-        pellentesque eu, pretium quis, sem.
-          - Bullet point
-          - Bullet point
+
+          - 
+          - 
 projects:
     title: Projects
     intro: >
-      You can list your side projects or open source libraries in this
-      section. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      Vestibulum et ligula in nunc bibendum fringilla a eu lectus.
+
     assignments:
-      - title: Velocity
-        link: "#hook"
-        tagline: "A responsive website template designed to help startups promote, market and sell their products."
+      - title:
+        link:
+        tagline:
 
-      - title: DevStudio
-        link: "#"
-        tagline: "A responsive website template designed to help web developers/designers market their services."
+      - title:
+        link:
+        tagline:
 
-      - title: Tempo
-        link: "#"
-        tagline: "A responsive website template designed to help startups promote their products or services and to attract users &amp; investors"
-
-      - title: Atom
-        link: "#"
-        tagline: "A comprehensive website template solution for startups/developers to market their mobile apps."
-
-      - title: Delta
-        link: "#"
-        tagline: "A responsive Bootstrap one page theme designed to help app developers promote their mobile apps"
+      - title:
+        link:
+        tagline:
 
 publications:
     title: Publications
     intro: |
-      You can list your publications in this section. Lorem ipsum dolor sit
-      amet, consectetur adipiscing elit. Vestibulum et ligula in nunc
-      bibendum fringilla a eu lectus.
+
     papers:
-      - title: The Art of Computer Programming
-        link: "#"
-        authors: Donald E. Knuth
-        conference: Addison-Wesley, 1968
+      - title:
+        link:
+        authors:
+        conference:
 
-      - title: "Genetic Programming III: Darwinian Invention &amp; Problem Solving"
-        link: "#"
-        authors: Koza, J.R., Andre, D., Bennett, F.H., Keane, M.A.
-        conference: "Morgan Kaufmann Publishers Inc., San Francisco, CA, USA, 1st edn. (1999)"
+      - title:
+        link:
+        authors:
+        conference:
 
-      - title: A syntax directed compiler for Algol 60
-        link: "#"
-        authors: Edgar T. Irons
-        conference: "Comm. ACM 4 (1961), 51–55"
+      - title:
+        link:
+        authors:
+        conference:
 
 skills:
     title: Skills &amp; Proficiency
 
     toolset:
-      - name: Python & Django
-        level: 98%
+      - name: Python
+        level: 80%
 
-      - name: Javascript & jQuery
-        level: 98%
+      - name: Verilog
+        level: 80%
 
-      - name: Angular
-        level: 98%
+      - name: Linux
+        level: 75%
 
-      - name: HTML5 & CSS
-        level: 95%
+      - name: C/C++
+        level: 75%
 
-      - name: Ruby on Rails
-        level: 85%
+      - name:
+        level:
 
-      - name: Sketch & Photoshop
-        level: 60%
+      - name:
+        level:
 
 footer: >
     Designed with <i class="fas fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank" rel="nofollow">Xiaoying Riley</a>
+    
