@@ -130,6 +130,9 @@ skills:
 
       - name: Python
         level: 85%
+       
+      - name: Matlab
+        level: 85%
 
       - name: Linux
         level: 75%
