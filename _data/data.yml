@@ -38,13 +38,13 @@ sidebar:
      #   level:
 
     interests:
-      - item: VLSI CAD
-        link:
-
       - item: Physical Design Optimization
         link:
 
-      - item:
+      - item: VLSI EDA
+        link:
+
+      - item: FPGA EDA
         link:
 
 
