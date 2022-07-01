@@ -17,7 +17,7 @@ sidebar:
     website:  #do not add http://
     linkedin:
     xing:
-    github: jaemin0502
+    github: 
     telegram: # add your nickname without '@' sign
     gitlab:
     bitbucket:
@@ -90,14 +90,18 @@ projects:
     intro: >
 
     assignments:
-      - title:
+      - title: Intel PSG Cloud Scale Quartus
         link:
-        tagline:
-
-      - title:
+        tagline: Intel, UCSD, May.2022 - Present
+        
+      - title: Security Closure of Physical Layouts (ISPD Contest 2022)
         link:
-        tagline:
-
+        tagline: New York University (NYU), March.2022
+        
+      - title: Artificial Intelligence (AI) Model for Predicting Display Panel Performance.
+        link:
+        tagline: LG Display, Aug.2021 - Present
+       
       - title:
         link:
         tagline:
@@ -113,7 +117,7 @@ projects:
 
 publications:
     title: Publications
-    intro: |
+    intro: | 
 
     papers:
       # - title:
@@ -125,21 +129,21 @@ skills:
     title: Skills &amp; Proficiency
 
     toolset:
-      - name: Verilog
+    
+      - name: Python
         level: 90%
 
-      - name: Python
-        level: 85%
-       
-      - name: Matlab
-        level: 85%
-
       - name: Linux
-        level: 75%
+        level: 90%
+        
+      - name: Verilog
+        level: 80%
 
       - name: C/C++
+        level: 80%
+       
+      - name: Matlab
         level: 75%
-
 
 
 
