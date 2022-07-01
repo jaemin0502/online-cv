@@ -78,8 +78,13 @@ education:
           - 
 experiences:
     - role: Graduated Student Researcher
-      time: July 2021  - Present
+      time: Sep.2021  - Present
       company: CAD & SoC Design Lab(CSDL) in POSTECH, Prof, Seokhyeong Kang
+      details: |
+      
+    - role: Undergraduated Student Researcher
+      time: Feb.2017  - Aug.2022
+      company: Pohang University of Science and Technology, POSTECH
       details: |
 
     #      - 
@@ -92,7 +97,7 @@ projects:
     assignments:
       - title: Intel PSG Cloud Scale Quartus
         link:
-        tagline: Intel, UCSD, May.2022 - Present
+        tagline: Intel and University of California San Diego (UCSD), May.2022 - Present
         
       - title: Security Closure of Physical Layouts (ISPD Contest 2022)
         link:
@@ -120,15 +125,22 @@ publications:
     intro: | 
 
     papers:
-      # - title:
-      #  link:
-      #  authors:
-      #  conference:
+       - title: SAT-based Minimum Patch Generation for Functional ECO
+        link:
+        authors: Jaemin Seo, Kyungjun Min and Seokhyeong Kang
+        conference: The 29th Korean Conference on Semiconductors (KCS), 2022
+projects:
+    title: Awards
+    intro: >
 
+    assignments:
+      - title: 31th ACM International Symposium on Physical Design (ISPD 2022) Contest Honorable mention
+        link:
+        tagline: Jaemin Seo, Seokhyeong Kang
 skills:
     title: Skills &amp; Proficiency
 
-    toolset:
+    toolset: Innovus (Cadence), Quartus Prime (Intel)
     
       - name: Python
         level: 90%
