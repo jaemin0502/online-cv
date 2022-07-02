@@ -137,6 +137,7 @@ projects:
       - title: 31th ACM International Symposium on Physical Design (ISPD 2022) Contest Honorable mention
         link:
         tagline: Jaemin Seo, Seokhyeong Kang
+        
 skills:
     title: Skills &amp; Proficiency
 
@@ -156,11 +157,6 @@ skills:
        
       - name: Matlab
         level: 75%
-
-
-
-
-
 
 
 footer: >
