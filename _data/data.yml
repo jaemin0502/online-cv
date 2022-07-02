@@ -49,9 +49,6 @@ sidebar:
 
 
 
-
-
-
 career-profile:
     title: Career Profile
     summary: |
@@ -62,6 +59,7 @@ career-profile:
       His research interest includes EDA(Electronic Design Automation) flow, ML-CAD
       (Machine Learning Computer Aided Design), VLSI(Very-Large-Scale Integration)
       physical design.
+      
 education:
     - degree: M.S. -Ph.D in Electrical Engineering
       university: Pohang University of Science and Technology(POSTECH)
@@ -129,14 +127,6 @@ publications:
         link:
         authors: Jaemin Seo, Kyungjun Min and Seokhyeong Kang
         conference: The 29th Korean Conference on Semiconductors (KCS), 2022
-projects:
-    title: Awards
-    intro: >
-
-    assignments:
-      - title: 31th ACM International Symposium on Physical Design (ISPD 2022) Contest Honorable mention
-        link:
-        tagline: Jaemin Seo, Seokhyeong Kang
         
 skills:
     title: Skills &amp; Proficiency
